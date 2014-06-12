@@ -55,3 +55,19 @@ public void Update() {
 }
 
 ```
+
+***Importing***
+
+Clone this repository locally with `git clone git@github.com:adampassey/unity-2d-test-bed.git` and use import the
+package into Unity with `Assets` > `Import Package` > `Custom Package`. Select only the component(s) you
+will be using. The *Usage scripts show implementation and are not needed.
+
+***Contribution***
+
+Contribute by forking, creating a feature branch, and opening a pull-request. 
+
+***Contact***
+
+Adam Passey
+
+http://adampassey.com
