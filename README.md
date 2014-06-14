@@ -25,6 +25,13 @@ public class Actor : MonoBehavior {
     Events.Fire("player-dies");
     //  ... do other things
   }
+  
+  //  when the player wins, fire an event
+  //  passing this (as the sender) to the
+  //  receiving object
+  public void Win() {
+    Events.Fire("player-wins", this);
+  }
 }
 
 ```
@@ -35,14 +42,25 @@ using AdamPassey.Event;
 
 public class GameOverScreen : MonoBehavior {
   
-  //  start listening for the "player-dies" event
+  //  start listening for the "player-dies" and "player-wins" events
   public void Start() {
     Events.When("player-dies", DisplayGameOverScreen);
+    Events.When("player-wins", DisplayStatsScreen);
   }
   
   //  will get called when "player-dies" event is fired
-  public void DisplayGameOverScreen() {
+  //  requires EventContext as argument
+  public void DisplayGameOverScreen(EventContext e) {
     //  ... do something
+  }
+  
+  //  will get called when "player-wins" event is fired
+  //  inspects sender- watch out, sender can be null
+  public void DisplayStatsScreen(EventContext e) {
+    if (e.sender != null) {
+      Debug.Log(e.sender); // will print "Object (Component)"
+      //  ... do something to/with sender
+    }
   }
 }
 
