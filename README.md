@@ -104,8 +104,8 @@ public void Update() {
 ***Importing***
 
 Clone this repository locally with `git clone git@github.com:adampassey/unity-2d-test-bed.git` and use import the
-package into Unity with `Assets` > `Import Package` > `Custom Package`. Select only the component(s) you
-will be using. The *Usage scripts show implementation and are not needed.
+package into Unity with `Assets` > `Import Package` > `Custom Package`. Select the [Package](https://github.com/adampassey/unity-2d-test-bed/blob/master/Package.unitypackage) 
+and only import the component(s) you will be using. The *Usage scripts show implementation and are not needed.
 
 ***Contribution***
 
