@@ -5,7 +5,7 @@ namespace AdamPassey.Event
 {
 	public static class Events
 	{
-		public static Dictionary<string, Action> listeners;
+		public static Dictionary<string, Action<EventContext>> listeners;
 
 		/**
 		 * Static constructor
@@ -13,7 +13,7 @@ namespace AdamPassey.Event
 		 **/
 		static Events()
 		{
-			listeners = new Dictionary<string, Action>();
+			listeners = new Dictionary<string, Action<EventContext>>();
 		}
 
 		/**
@@ -22,7 +22,7 @@ namespace AdamPassey.Event
 		 * @param string eventName The name of the event to fire
 		 * @param Action method The method to fire
 		 **/ 
-		public static void When(string eventName, Action method) {
+		public static void When(string eventName, Action<EventContext> method) {
 			listeners.Add(eventName, method);
 		}
 
@@ -32,10 +32,25 @@ namespace AdamPassey.Event
 		 * @param string eventName The name of the event to fire.
 		 **/
 		public static void Fire(string eventName) {
-			foreach (KeyValuePair<string, Action> entry in listeners) {
+			Fire(eventName, null);
+		}
+
+		/**
+		 * Fire an event, passing sender to listeners.
+		 * 
+		 * @param string eventName The name of the event to fire.
+		 * @param object sender The object to pass to the listener.
+		 * 
+		 **/
+		public static void Fire(string eventName, Object sender) {
+			foreach (KeyValuePair<string, Action<EventContext>> entry in listeners) {
 				if (entry.Key == eventName) {
-					//	TODO: send an Event object to receiver
-					entry.Value();
+
+					EventContext e = new EventContextImpl();
+					e.eventName = eventName;	
+					e.sender = sender;
+					
+					entry.Value(e);
 				}
 			}
 		}
