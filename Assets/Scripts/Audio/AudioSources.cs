@@ -28,6 +28,7 @@ namespace AdamPassey.Audio
 
 		/**
 		 * Play the AudioSource at the given index.
+		 * 
 		 * @param pos The int index
 		 * @return void
 		 **/
@@ -38,6 +39,7 @@ namespace AdamPassey.Audio
 		/**
 		 * Play the AudioSource at the given index for
 		 * a specific amount of time.
+		 * 
 		 * @param pos The int index
 		 * @param time The double time
 		 * @return void
@@ -48,6 +50,7 @@ namespace AdamPassey.Audio
 
 		/**
 		 * Stop playing the AudioSource at the given index.
+		 * 
 		 * @param pos The int index
 		 * @return void
 		 **/
@@ -57,6 +60,7 @@ namespace AdamPassey.Audio
 
 		/**
 		 * Play the AudioClip at the given index a single time.
+		 * 
 		 * @param pos The int index
 		 * @return void
 		 **/
@@ -66,11 +70,22 @@ namespace AdamPassey.Audio
 
 		/**
 		 * Play the AudioClip at the given index and volume scale.
+		 * 
 		 * @param pos The int index
 		 * @param volumeScale The float volume scale
 		 */
 		public void PlayOnce(int pos, float volumeScale) {
 			audioSources[pos].PlayOneShot(audioSources[pos].clip, volumeScale);
+		}
+
+		/**
+		 * Retrieve the AudioSource at the given index
+		 * 
+		 * @parm int pos The int index
+		 * @return AudioSource The audio source
+		 **/
+		public AudioSource GetAudioSource(int pos) {
+			return audioSources[pos];
 		}
 	}
 }

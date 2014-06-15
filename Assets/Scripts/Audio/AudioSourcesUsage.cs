@@ -40,6 +40,15 @@ namespace AdamPassey.Audio
 			if (Input.GetKeyDown(KeyCode.D)) {
 				audioSources.PlayScheduled((int)Sounds.Smack, 1);
 			}
+
+			if (Input.GetKeyDown(KeyCode.E)) {
+				//	retrieve the AudioSource directly and manipulate
+				AudioSource audioSource = audioSources.GetAudioSource((int)Sounds.Jump);
+				audioSource.pitch = 0.5f;
+				audioSource.dopplerLevel = 0.1f;
+
+				audioSource.Play();
+			}
 		}
 	}
 }
