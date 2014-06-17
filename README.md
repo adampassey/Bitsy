@@ -74,6 +74,16 @@ public class GameOverScreen : MonoBehavior {
 
 ---
 
+**Circular Parallax (no scripting required)**
+
+Although not a traditional Parallax, the Circular Parallax script creates a "night star" effect, where the image rotates around the camera, at a given offset. This script uses a Sprite Renderer to act as the background.
+
+*Usage:* Create an empty game object and attach a `Sprite Renderer` component. This object will act as the rotating background. Create a new empty game object and attach the `Circular Parallax` script to it. Drag the previously created game object with a `Sprite Renderer` component into the `Sprite Renderer Object` field.
+
+Adjust the rotation speed as well as the offset (to the main camera) on the `Circular Parallax` component as needed.
+
+---
+
 **AudioSources**
 
 Provides a way to attach multiple `AudioClip`'s to a single GameObject without having to attach
