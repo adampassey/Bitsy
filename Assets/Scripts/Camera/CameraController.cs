@@ -3,35 +3,23 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
+	
+	public float smoothing = 5f;
+	public GameObject target { get; set; }
 
-	public float speed = 25f;
+	private Vector3 offset;
 
 	// Use this for initialization
 	void Start() {
-	
+		offset = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update() {
-
-		Vector2 newPosition = new Vector2();
-
-		if (Input.GetKey(KeyCode.LeftArrow)) {
-			newPosition.x -= 1.0f;
+		if (target == null) {
+			target = GameObject.FindGameObjectWithTag("Player");
 		}
-
-		if (Input.GetKey(KeyCode.RightArrow)) {
-			newPosition.x += 1.0f;
-		}
-
-		if (Input.GetKey(KeyCode.UpArrow)) {
-			newPosition.y += 1.0f;
-		}
-
-		if (Input.GetKey(KeyCode.DownArrow)) {
-			newPosition.y -= 1.0f;
-		}
-
-		transform.Translate(newPosition * speed * Time.deltaTime);
+		
+		transform.position = Vector3.Lerp(transform.position, target.transform.position + offset, Time.deltaTime * smoothing);
 	}
 }
