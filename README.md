@@ -84,6 +84,27 @@ Adjust the rotation speed as well as the offset (to the main camera) on the `Cir
 
 ---
 
+**Parallax (no scripting required)**
+
+The Parallax script allows you to easily add Parallax backgrounds to your scene that will move at the desired speed(s).
+This script achieves this effect by manipulating the offset and position of a repeated texture. In the example provided, the Parallax script is using a Quad which contains a material with a wrapped texture.
+
+*Usage:* Import an image asset and set the `Texture Type` to `Texture`. Also set the `Wrap Mode` to `Repeat`. Create a 
+new material by selecting `Assets` -> `Create` -> `Material`. Select the appropriate texture and the desired tiling.
+
+The Parallax script adjusts the texture offset on the `x` axis, and the position of the rendered texture on the `y` axis,
+while keeping the Parallax object in sync with the main camera. Depending on the desired effect, you should only need
+to set the tiling on the `x` axis. 
+
+In your scene create an empty game object and attach thet `Parallax` script. Create an object that renders a material
+(in the example provided a Quad was used). Attach your material to this object and adjust the size and tiling to 
+correctly fit the main camera bounds. Drag this object into the `Texture Object` field in the `Parallax` component.
+
+Adjust the `speed` on the Parallax object to achieve the desired effect. The `speed` attribute is expected to be between
+`0.1 - 0.9` with `0.1` representing objects far in the distance and `0.9` representing closer objects.
+
+---
+
 **AudioSources**
 
 Provides a way to attach multiple `AudioClip`'s to a single GameObject without having to attach
