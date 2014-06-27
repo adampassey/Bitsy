@@ -5,10 +5,11 @@ public class CharacterController : MonoBehaviour
 {
 
 	public float speed = 5f;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start() {
-	
+		animator = gameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -30,6 +31,10 @@ public class CharacterController : MonoBehaviour
 		
 		if (Input.GetKey(KeyCode.DownArrow)) {
 			newPosition.y -= 1.0f;
+		}
+
+		if (Input.GetKey(KeyCode.U)) {
+			animator.SetBool("Unsheathe", true);
 		}
 		
 		transform.Translate(newPosition * speed * Time.deltaTime);

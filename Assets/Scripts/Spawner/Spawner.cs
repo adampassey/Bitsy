@@ -10,7 +10,11 @@ namespace AdamPassey.Spawner
 
 		// Use this for initialization
 		void Start() {
-			GameObject.Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+			GameObject spawnedObject = (GameObject)GameObject.Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+			spawnedObject.transform.parent = transform.parent;
+
+			CameraController cameraController = (CameraController)Camera.main.gameObject.GetComponent<CameraController>();
+			cameraController.target = spawnedObject;
 		}
 
 		public void OnDrawGizmos() {
