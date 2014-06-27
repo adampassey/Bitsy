@@ -5,7 +5,7 @@ namespace AdamPassey.Parallax
 {
 	public class Parallax : MonoBehaviour
 	{
-		public GameObject quadObject;
+		public GameObject textureObject;
 		public float speed = 0.1f;
 
 		private Camera mainCamera;
@@ -28,9 +28,9 @@ namespace AdamPassey.Parallax
 			Vector3 currentPosition = mainCamera.transform.position;
 
 			//	create the texture offset based on desired speed
-			Vector2 textureOffset = quadObject.renderer.material.mainTextureOffset;
+			Vector2 textureOffset = textureObject.renderer.material.mainTextureOffset;
 			textureOffset.x += (currentPosition.x - previousPosition.x) * speed;
-			quadObject.renderer.material.mainTextureOffset = textureOffset;
+			textureObject.renderer.material.mainTextureOffset = textureOffset;
 
 			//	set the y position based on speed
 			Vector3 newPosition = currentPosition;
