@@ -6,6 +6,11 @@ namespace AdamPassey.Pool
 	public class GameObjectPool<T> where T : MonoBehaviour
 	{
 		private T[] gameObjects;
+		private GameObject prefab;
+		private int count;
+		private GameObject parent;
+
+		private static string parentName = "Game Object Pool: ";
 
 		/**
 		 *	Create an instance of the GameObjectPool with
@@ -16,16 +21,30 @@ namespace AdamPassey.Pool
 		public GameObjectPool(GameObject prefab, int count)
 		{
 			gameObjects = new T[count];
+			this.prefab = prefab;
+			this.count = count;
 
+			parent = new GameObject();
+			parent.name = parentName + prefab.name;
+		}
+
+		/**
+		 *	Use CreatePool courotine to populate the
+		 * 	object pool over time.
+		 * 
+		 **/
+		public IEnumerator CreatePool() {
 			for (int i = 0; i < count; i++) {
-
-				//	TODO: Instantiate these into a parent object for cleanliness
-				//	also, instead of instantiating all at once, use a buffer
+				//	TODO: use a buffer as to not instantiate all, 
+				//	but only what is needed
 				GameObject go = (GameObject)GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+				go.transform.parent = parent.transform;
 				go.SetActive(false);
-
+				
 				T co = go.GetComponent<T>();
 				gameObjects[i] = co;
+
+				yield return null;
 			}
 		}
 

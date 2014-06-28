@@ -92,7 +92,11 @@ public class Gun : MonoBehavior {
   private GameObjectPool<Bullet> gameObjectPool;
   
   void Start() {
+	//	Instantiate the Game Object Pool and use a Coroutine to 
+	//	instantiate all the items in the pool
     gameObjectPool = new GameObjectPool<Bullet>(bulletPrefab, maxBulletCount);
+	StartCoroutine(gameObjectPool.CreatePool());
+	
   }
   
   public void Shoot() {
