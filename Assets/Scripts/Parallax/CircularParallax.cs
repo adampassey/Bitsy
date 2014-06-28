@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace AdamPassey.Parallax
 {
+	[AddComponentMenu("Environment/Circular Parallax")]
 	public class CircularParallax : MonoBehaviour
 	{
 		public GameObject spriteRendererObject;
