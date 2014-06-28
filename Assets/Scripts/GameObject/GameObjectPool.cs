@@ -40,7 +40,7 @@ namespace AdamPassey.Pool
 				GameObject go = (GameObject)GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
 				go.transform.parent = parent.transform;
 				go.SetActive(false);
-				
+
 				T co = go.GetComponent<T>();
 				gameObjects[i] = co;
 
