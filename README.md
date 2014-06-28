@@ -74,6 +74,51 @@ public class GameOverScreen : MonoBehavior {
 
 ---
 
+**Game Object Pool**
+
+The Game Object Pool instantiates game objects and makes it easy to retrieve them without using expensive `Instantiate` calls.
+
+*Usage:* Create an instance of the `GameObjectPool`, and retrieve items from it using `Get()`.
+
+Gun.cs
+```C#
+using AdamPassey.Pool;
+
+public class Gun : MonoBehavior {
+  
+  public GameObject bulletPrefab;
+  public int maxBulletCount;
+  
+  private GameObjectPool<Bullet> gameObjectPool;
+  
+  void Start() {
+    gameObjectPool = new GameObjectPool<Bullet>(bulletPrefab, maxBulletCount);
+  }
+  
+  public void Shoot() {
+    Bullet bullet = gameObjectPool.Get();
+    if (bullet != null) {
+      //  ... do something with bullet
+    }
+  }
+}
+```
+
+Bullet.cs
+```C#
+public class Bullet : MonoBehavior {
+  
+  public void OnCollisionEnter2D(Collision2D collision) {
+    
+    //  do not use Destroy(), instead just deactivate the 
+    //  object. This lets it remain in the pool.
+    gameObject.SetActive(false);
+  }
+}
+```
+
+---
+
 **Circular Parallax (no scripting required)**
 
 Although not a traditional Parallax, the Circular Parallax script creates a "night star" effect, where the image rotates around the camera, at a given offset. This script uses a Sprite Renderer to act as the background.
