@@ -18,6 +18,9 @@ namespace AdamPassey.Pool
 			gameObjects = new T[count];
 
 			for (int i = 0; i < count; i++) {
+
+				//	TODO: Instantiate these into a parent object for cleanliness
+				//	also, instead of instantiating all at once, use a buffer
 				GameObject go = (GameObject)GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
 				go.SetActive(false);
 
