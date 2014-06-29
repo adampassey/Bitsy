@@ -10,12 +10,16 @@ namespace AdamPassey.Inventory
 	{
 
 		public List<GameObject> inventory;
+
 		private GameObject parent;
 		private static string parentName = "Inventory";
+		private InventoryGUI inventoryGUI;
 
 		public void Start() {
 			inventory = new List<GameObject>();
 			parent = GameObjectFactory.NewGameObject(parentName, gameObject.transform);
+			inventoryGUI = parent.AddComponent<InventoryGUI>();
+			inventoryGUI.Hide();
 		}
 
 		/**
@@ -39,6 +43,28 @@ namespace AdamPassey.Inventory
 			obj.SetActive(true);
 			obj.transform.parent = null;
 			return obj;
+		}
+
+		/**
+		 * 	Convenience method to determine if the
+		 * 	inventory GUI is visible
+		 **/
+		public bool IsVisible() {
+			return inventoryGUI.gameObject.activeSelf;
+		}
+
+		/**
+		 * 	Show the inventory GUI
+		 **/
+		public void Show() {
+			inventoryGUI.SetObjects(inventory).Show(this);
+		}
+
+		/**
+		 * 	Hide the inventory GUI
+		 **/
+		public void Hide() {
+			inventoryGUI.Hide();
 		}
 	}
 }
