@@ -154,6 +154,27 @@ Adjust the `speed` on the Parallax object to achieve the desired effect. The `sp
 
 ---
 
+**GameState**
+
+The simple GameState script makes it easy to set and retrieve state.
+
+```C#
+//	set the state to paused
+GameState.SetState(GameState.States.Paused);
+
+//	set the state to running
+GameState.SetState(GameState.States.Running);
+
+//	use convenience methods in Update()
+void Update() {
+	if (!GameState.IsRunning()) {
+		return;
+	}
+}
+```
+
+---
+
 **AudioSources**
 
 Provides a way to attach multiple `AudioClip`'s to a single GameObject without having to attach
