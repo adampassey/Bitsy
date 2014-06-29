@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 using AdamPassey.Inventory;
+using AdamPassey.GameState;
 
 public class ActorController : MonoBehaviour
 {
@@ -15,10 +17,18 @@ public class ActorController : MonoBehaviour
 		animator = gameObject.GetComponent<Animator>();
 		rigidbody = gameObject.GetComponent<Rigidbody2D>();
 		inventory = gameObject.GetComponent<Inventory>();
+
+		GameState.SetState(GameState.States.Running);
 	}
 	
 	// Update is called once per frame
 	void Update() {
+
+		//	if we're paused, don't
+		//	run the update loop
+		if (!GameState.IsRunning()) {
+			return;
+		}
 
 		Vector2 newPosition = new Vector2();
 		
