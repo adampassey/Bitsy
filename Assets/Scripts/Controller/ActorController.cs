@@ -74,7 +74,6 @@ public class ActorController : MonoBehaviour
 	}
 
 	public void OnTriggerEnter2D(Collider2D collider) {
-		Debug.Log("OnTriggerEnter2D!");
 		InventoryItem inventoryItem = collider.gameObject.GetComponent<InventoryItem>();
 		if (inventoryItem != null) {
 			inventory.AddObject(inventoryItem.gameObject);
