@@ -58,6 +58,8 @@ namespace AdamPassey.Animation
 		 **/
 		private void PropagateAnimation() {
 			foreach (Animator animator in childAnimators) {
+				//	TODO: if this animator doesn't have the 
+				//	currentClipName, this fails.
 				animator.Play(currentClipName);
 			}
 		}

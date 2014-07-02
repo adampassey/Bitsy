@@ -74,6 +74,30 @@ public class GameOverScreen : MonoBehavior {
 
 ---
 
+**Animation Sync**
+
+The Animation Sync component isn't meant to replace the Unity Pro feature of animation layer syncing, but it is meant
+to alleviate re-creating the state machines and transitions between animations. When this component is attached to
+a Game Object, it will watch for animation state changes. If a new clip is played on the parent object, it will 
+propagate this clip to all children objects.
+
+If the children of the parent object change, all children animators will need to be reloaded. Do this by running:
+
+```C#
+public void Start() {
+	//	keep this cached
+	AnimationSync animationSync = gameObject.GetComponent<AnimationSync>();
+}
+
+public void SomeChildObjectAdded() {
+	//	update the child animators
+	animationSync.ReloadChildAnimators();
+}
+
+```
+
+---
+
 **Game Object Pool**
 
 The Game Object Pool instantiates game objects and makes it easy to retrieve them without using expensive `Instantiate` calls.
