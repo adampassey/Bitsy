@@ -22,7 +22,7 @@ public class ActorController : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update() {
+	void FixedUpdate() {
 
 		//	if we're paused, don't
 		//	run the update loop
@@ -48,7 +48,7 @@ public class ActorController : MonoBehaviour
 			newPosition.y -= 1.0f;
 		}
 
-		if (Input.GetKey(KeyCode.U)) {
+		if (Input.GetKeyDown(KeyCode.U)) {
 			animator.SetBool("Unsheathe", true);
 		}
 
