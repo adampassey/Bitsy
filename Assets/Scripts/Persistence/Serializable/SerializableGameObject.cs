@@ -3,6 +3,10 @@ using System.Collections;
 
 namespace AdamPassey.Persistence.Serializable
 {
+	/**
+	 * 	Serializable Game Object. Currently only contains
+	 * 	an objects position.
+	 **/
 	[System.Serializable]
 	public class SerializableGameObject
 	{
