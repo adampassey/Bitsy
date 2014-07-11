@@ -147,6 +147,59 @@ public class Bullet : MonoBehavior {
 
 ---
 
+**Persistence**
+
+The persistence package helps with the saving and loading of data through `Data Container`'s. Data that goes into these containers must be serializable, so serializable alternatives to `Vector3` and `GameObject` have been created for use. Also included in this package is an initial `GameObjectDataContainer` for saving the position of `GameObject`'s in a scene.
+
+Using the built-in `GameObjectDataContainer` to save `GameObject`'s is straightforward:
+```C#
+// assuming you have a list of GameObject's
+List<GameObject> list;
+
+//  create the data container
+GameObjectDataContainer dataContainer = new GameObjectDataContainer();
+
+//  iterate through your list, create SerializableGameObject's, 
+//  and add them to the DataContainer
+for (GameObject go in list) {
+	SerializableGameObject serializable = new SerializableGameObject(go);
+	dataContainer.Add(serializable);
+}
+
+//  save this container with this filename
+Persister.Save<GameObjectDataContainer>("game-objects", dataContainer);
+```
+
+You can also use this package to load data:
+```C#
+//  load the data container through the persister
+GameObjectDataContainer dataContainer = Persister.Load<GameObjectDataContainer>("game-objects", new GameObjectDataContainer());
+
+//  if it's not null, we've got data!
+if (dataContainer != null) {
+	//  create GameObject's from the SerializedGameObjects
+	for (SerializableGameObject s in dataContainer.GetData()) {
+		GameObject go = (GameObject) GameObject.Instantiate(somePrefab, s.position.ToVector3(), Quaternion.identity);
+	}
+}
+```
+
+You can also create custom data containers to use:
+```C#
+//  define the Data Container, annotate as Serializable
+[System.Serializable]
+public class NameDataContainer : DataContainer {
+	public string name;
+}
+
+// use this container to save data
+NameDataContainer dataContainer = new NameDataContainer();
+dataContainer.name = "Adam";
+Persister.Save<NameDataContainer>("name", dataContainer);
+```
+
+---
+
 **Circular Parallax (no scripting required)**
 
 Although not a traditional Parallax, the Circular Parallax script creates a "night star" effect, where the image rotates around the camera, at a given offset. This script uses a Sprite Renderer to act as the background.
