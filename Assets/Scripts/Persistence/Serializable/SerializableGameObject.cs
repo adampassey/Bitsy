@@ -4,8 +4,13 @@ using System.Collections;
 namespace AdamPassey.Persistence.Serializable
 {
 	[System.Serializable]
-	public class SerializableMonoBehavior
+	public class SerializableGameObject
 	{
 		public SerializableVector3 position;
+
+		public SerializableGameObject(GameObject obj)
+		{
+			position = new SerializableVector3(obj.transform.position);
+		}
 	}
 }

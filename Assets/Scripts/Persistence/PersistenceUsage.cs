@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 using AdamPassey.Persistence;
 using AdamPassey.Persistence.Container;
@@ -10,18 +10,21 @@ public class PersistenceUsage : MonoBehaviour
 
 	public GameObject serializableCubePrefab;
 
-	private CubeDataContainer cubeDataContainer;
-	private string filepath = "cube-data-03";
+	private GameObjectDataContainer dataContainer;
+	private string filepath = "game-objects-example";
+	private List<GameObject> gameObjects;
 
 	// Use this for initialization
 	public void Start() {
-		cubeDataContainer = new CubeDataContainer();
+		dataContainer = new GameObjectDataContainer();
+		gameObjects = new List<GameObject>();
 
-		CubeDataContainer loadedDataContainer = Persister.Load<CubeDataContainer>(filepath, new CubeDataContainer());
+		GameObjectDataContainer loadedDataContainer = Persister.Load<GameObjectDataContainer>(filepath, new GameObjectDataContainer());
 		if (loadedDataContainer != null) {
-			foreach (SerializableMonoBehavior c in loadedDataContainer.GetData()) {
+			foreach (SerializableGameObject c in loadedDataContainer.GetData()) {
 				GameObject go = (GameObject)GameObject.Instantiate(serializableCubePrefab, c.position.ToVector3(), Quaternion.identity);
-				AddGameObjectToDataContainer(go);
+				go.transform.parent = transform;
+				gameObjects.Add(go);
 			}
 		}
 	}
@@ -30,16 +33,17 @@ public class PersistenceUsage : MonoBehaviour
 	public void Update() {
 		if (Input.GetKeyDown(KeyCode.Q)) {
 			GameObject go = (GameObject)GameObject.Instantiate(serializableCubePrefab, Vector3.zero, Quaternion.identity);
-			AddGameObjectToDataContainer(go);
-
-			Persister.Save<CubeDataContainer>(filepath, cubeDataContainer);
+			go.transform.parent = transform;
+			gameObjects.Add(go);
 		}
 	}
 
-	private void AddGameObjectToDataContainer(GameObject o) {
-		SerializableMonoBehavior monobehavior = new SerializableMonoBehavior();
-		monobehavior.position = new SerializableVector3(o.transform.position);
-		cubeDataContainer.Add(monobehavior);
+	//	On Destroy script, save
+	public void OnDestroy() {
+		foreach (GameObject go in gameObjects) {
+			SerializableGameObject s = new SerializableGameObject(go);
+			dataContainer.Add(s);
+		}
+		Persister.Save<GameObjectDataContainer>(filepath, dataContainer);
 	}
-
 }
