@@ -11,7 +11,7 @@ public class PersistenceUsage : MonoBehaviour
 	public GameObject serializableCubePrefab;
 
 	private GameObjectDataContainer dataContainer;
-	private string filepath = "game-objects-example";
+	private string filepath = "game-objects";
 	private List<GameObject> gameObjects;
 
 	// Use this for initialization

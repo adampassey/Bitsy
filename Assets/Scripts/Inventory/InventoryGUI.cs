@@ -14,18 +14,14 @@ namespace AdamPassey.Inventory
 		 **/
 		void OnGUI() {
 			GUI.backgroundColor = Color.black;
-			GUI.Box(new Rect(10, 10, 200, 200), "Inventory");
+			GUI.Box(new Rect(50, 50, 200, 200), "Inventory");
 
-			Vector2 position = new Vector2();
+			Vector2 position = new Vector2(50, 50);
 			for (int i = 0; i < inventory.Count; i++) {
 				GameObject obj = inventory[i];
-				GUITexture guiTexture = obj.GetComponent<GUITexture>();
+				InventoryItem inventoryItem = obj.GetComponent<InventoryItem>();
 
-				//	TODO: the GUITexture component doesn't renderer using it's 
-				//	pixel inset here. Currently renders the entire texture.
-				//	Would be ideal if we could create a texture from the SpriteRenderer
-				//	component and keep our component attachment requirements to a minimal
-				if (GUI.Button(new Rect(position.x, position.y, 100, 100), guiTexture.texture)) {
+				if (GUI.Button(new Rect(position.x, position.y, 50, 50), inventoryItem.texture)) {
 					//	TODO: Move this out into a handler
 					//	currently dropping objects that are clicked
 					GameObject droppedObject = parentInventory.GetObject(i);
@@ -33,7 +29,10 @@ namespace AdamPassey.Inventory
 					pos.x += 1f;
 					droppedObject.transform.position = pos;
 				}
-				position.x += 100;
+
+				//	TODO: Make a grid of objects
+				//	instead of a row
+				position.x += 50;
 			}
 		}
 
