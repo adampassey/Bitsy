@@ -3,20 +3,27 @@ using System.Collections.Generic;
 
 namespace AdamPassey.Inventory
 {
+	[AddComponentMenu("Gameplay/Inventory")]
 	public class InventoryGUI : MonoBehaviour
 	{
 
 		private Inventory parentInventory;
 		private List<GameObject> inventory;
 
+		private Rect windowRect = new Rect(50, 50, 220, 200);
+
 		/**
 		 *	Render the inventory GUI
 		 **/
 		void OnGUI() {
-			GUI.backgroundColor = Color.black;
-			GUI.Box(new Rect(50, 50, 200, 200), "Inventory");
+			windowRect = GUI.Window(0, windowRect, OnInventoryWindow, "Inventory");
+		}
 
-			Vector2 position = new Vector2(50, 50);
+		/**
+		 * 	Draw the inventory in a draggable window
+		 **/
+		public void OnInventoryWindow(int windowId) {
+			Vector2 position = new Vector2(10, 20);
 			for (int i = 0; i < inventory.Count; i++) {
 				GameObject obj = inventory[i];
 				InventoryItem inventoryItem = obj.GetComponent<InventoryItem>();
@@ -32,9 +39,18 @@ namespace AdamPassey.Inventory
 
 				//	TODO: Make a grid of objects
 				//	instead of a row
-				position.x += 50;
+				if (i != 0 && i % 4 == 0) {
+					position.x = 10;
+					position.y += 50;
+				} else {
+					position.x += 50;
+				}
 			}
+			//	called at the end as to not
+			//	overwrite button clicks
+			GUI.DragWindow();
 		}
+
 
 		/**
 		 * 	Set the objects to render
