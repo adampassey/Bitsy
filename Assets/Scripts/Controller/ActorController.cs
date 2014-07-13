@@ -22,7 +22,7 @@ public class ActorController : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate() {
+	void Update() {
 
 		//	if we're paused, don't
 		//	run the update loop
@@ -69,12 +69,20 @@ public class ActorController : MonoBehaviour
 				inventory.Show();
 			}
 		}
+
+		if (Input.GetKeyDown(KeyCode.T)) {
+			if (Time.timeScale == 1.0f) {
+				Time.timeScale = 0.5f;
+			} else {
+				Time.timeScale = 1.0f;
+			}
+		}
 		
 		transform.Translate(newPosition * speed * Time.deltaTime);
 	}
 
-	public void OnTriggerEnter2D(Collider2D collider) {
-		InventoryItem inventoryItem = collider.gameObject.GetComponent<InventoryItem>();
+	public void OnCollisionEnter2D(Collision2D collision) {
+		InventoryItem inventoryItem = collision.gameObject.GetComponent<InventoryItem>();
 		if (inventoryItem != null) {
 			inventory.AddObject(inventoryItem.gameObject);
 		}

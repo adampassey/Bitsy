@@ -28,7 +28,9 @@ namespace AdamPassey.Inventory
 				GameObject obj = inventory[i];
 				InventoryItem inventoryItem = obj.GetComponent<InventoryItem>();
 
-				if (GUI.Button(new Rect(position.x, position.y, 50, 50), inventoryItem.texture)) {
+				GUIContent guiContent = inventoryItem.GetGUIContent();
+
+				if (GUI.Button(new Rect(position.x, position.y, 50, 50), guiContent)) {
 					//	TODO: Move this out into a handler
 					//	currently dropping objects that are clicked
 					GameObject droppedObject = parentInventory.GetObject(i);
