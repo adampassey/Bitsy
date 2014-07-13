@@ -1,12 +1,12 @@
-Unity2D Test-Bed
+Bitsy
 =================
 
-Adam Passey's test bed for Unity2D components.
+A collection of itsy-bitsy [Unity](http://unity3d.com/) components written by [Adam Passey](http://adampassey.com).
 
 ***Importing***
 
-Clone this repository locally with `git clone git@github.com:adampassey/unity-2d-test-bed.git` and import the
-package into Unity with `Assets` > `Import Package` > `Custom Package`. Select the [Package](https://github.com/adampassey/unity-2d-test-bed/blob/master/Package.unitypackage) 
+Clone this repository locally with `git clone git@github.com:adampassey/bitsy.git` and import the
+package into Unity with `Assets` > `Import Package` > `Custom Package`. Select the [Package](https://github.com/adampassey/bitsy/blob/master/Package.unitypackage) 
 and only import the component(s) you will be using. The *Usage scripts show implementation and are not needed.
 
 ***Current Components***
