@@ -200,6 +200,28 @@ Persister.Save<NameDataContainer>("name", dataContainer);
 
 ---
 
+**Timer**
+
+Using the timer allows you to determine if a specific amount of time has passed. Usage:
+
+```C#
+using AdamPassey.Timer;
+
+private Timer timer;
+
+public void Start() {
+	timer = new Timer();
+}
+
+public void Update() {
+	if (time.TimeHasPassed(10)) {
+		Debug.Log("10 seconds has passed.");
+	}
+}
+```
+
+---
+
 **Circular Parallax (no scripting required)**
 
 Although not a traditional Parallax, the Circular Parallax script creates a "night star" effect, where the image rotates around the camera, at a given offset. This script uses a Sprite Renderer to act as the background.
