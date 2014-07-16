@@ -6,15 +6,15 @@ namespace AdamPassey.Parallax
 	[AddComponentMenu("Environment/Parallax")]
 	public class Parallax : MonoBehaviour
 	{
-		public GameObject textureObject;
+		public GameObject materialObject;
 		public float speed = 0.1f;
 
-		private Camera mainCamera;
-		private Vector3 previousPosition;
-		private Vector3 offset;
+		protected Camera mainCamera;
+		protected Vector3 offset;
+		protected Vector3 previousPosition;
 
 		// Use this for initialization
-		void Start() {
+		public virtual void Start() {
 	
 			mainCamera = Camera.main;
 			if (mainCamera == null) {
@@ -25,13 +25,13 @@ namespace AdamPassey.Parallax
 		}
 	
 		// Update is called once per frame
-		void Update() {
+		public virtual void Update() {
 			Vector3 currentPosition = mainCamera.transform.position;
 
 			//	create the texture offset based on desired speed
-			Vector2 textureOffset = textureObject.renderer.material.mainTextureOffset;
+			Vector2 textureOffset = materialObject.renderer.material.mainTextureOffset;
 			textureOffset.x += (currentPosition.x - previousPosition.x) * speed;
-			textureObject.renderer.material.mainTextureOffset = textureOffset;
+			materialObject.renderer.material.mainTextureOffset = textureOffset;
 
 			//	set the y position based on speed
 			Vector3 newPosition = currentPosition;

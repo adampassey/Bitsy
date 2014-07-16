@@ -226,7 +226,9 @@ public void Update() {
 
 Although not a traditional Parallax, the Circular Parallax script creates a "night star" effect, where the image rotates around the camera, at a given offset. This script uses a Sprite Renderer to act as the background.
 
-*Usage:* Create an empty game object and attach a `Sprite Renderer` component. This object will act as the rotating background. Create a new empty game object and attach the `Circular Parallax` script to it. Drag the previously created game object with a `Sprite Renderer` component into the `Sprite Renderer Object` field.
+*Usage:* Create a game object that will act as the background. This object can use any type of renderer: `SpriteRenderer`, 
+`MeshRenderer`, etc. This object will act as the rotating background. Create a new empty game object and attach the 
+`Circular Parallax` script to it. Drag the previously created game object with a `Renderer` component into the `Material Object` field.
 
 Adjust the rotation speed as well as the offset (to the main camera) on the `Circular Parallax` component as needed.
 
@@ -246,10 +248,19 @@ to set the tiling on the `x` axis.
 
 In your scene create an empty game object and attach thet `Parallax` script. Create an object that renders a material
 (in the example provided a Quad was used). Attach your material to this object and adjust the size and tiling to 
-correctly fit the main camera bounds. Drag this object into the `Texture Object` field in the `Parallax` component.
+correctly fit the main camera bounds. Drag this object into the `Material Object` field in the `Parallax` component.
 
 Adjust the `speed` on the Parallax object to achieve the desired effect. The `speed` attribute is expected to be between
 `0.1 - 0.9` with `0.1` representing objects far in the distance and `0.9` representing closer objects.
+
+---
+
+**Moving Parallax (no scripting required)**
+
+The moving Parallax is meant to help achieve the effect of a moving background (even when the camera is still). This 
+effect works great with clouds, or sky-like materials. Using this component is the same as the previous Parallax scripts:
+Merely attach a `Moving Parallax` component to an object, and drag and drop an object with a material into the
+`Material Object` field. Adjust the speed to your liking.
 
 ---
 
