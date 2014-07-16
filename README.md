@@ -258,7 +258,7 @@ Adjust the `speed` on the Parallax object to achieve the desired effect. The `sp
 **Moving Parallax (no scripting required)**
 
 The moving Parallax is meant to help achieve the effect of a moving background (even when the camera is still). This 
-effect works great with clouds, or sky-like materials. Using this component is the same as the previous Parallax scripts:
+effect works great with clouds, or sky-like materials. Use this component in the same way as the other Parallax scripts:
 Merely attach a `Moving Parallax` component to an object, and drag and drop an object with a material into the
 `Material Object` field. Adjust the speed to your liking.
 
