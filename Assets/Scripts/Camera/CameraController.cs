@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour
 {
 	
 	public float smoothing = 5f;
-	public GameObject target { get; set; }
+	public GameObject target;
 
 	private Vector3 offset;
 
