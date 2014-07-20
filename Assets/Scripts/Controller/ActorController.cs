@@ -52,16 +52,6 @@ public class ActorController : MonoBehaviour
 			animator.SetBool("Unsheathe", true);
 		}
 
-		if (Input.GetKeyDown(KeyCode.O)) {
-			//	Currently behaving as FILO
-			GameObject obj = inventory.GetObject(0);
-			if (obj != null) {
-				Vector2 position = transform.position;
-				position.x += 1f;
-				obj.transform.position = position;
-			}
-		}
-
 		if (Input.GetKeyDown(KeyCode.I)) {
 			if (inventory.IsVisible()) {
 				inventory.Hide();

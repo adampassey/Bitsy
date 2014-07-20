@@ -8,38 +8,69 @@ namespace AdamPassey.Inventory
 	[AddComponentMenu("Gameplay/Inventory")]
 	public class Inventory : MonoBehaviour
 	{
-
-		public List<GameObject> inventory;
+		public Rect guiSize = new Rect(50, 50, 220, 200);
+		public Vector2 inventorySize;
+		public Vector2 itemOffset;
+		public int tilesize;
+		public GameObject[,] inventory;
 
 		private GameObject parent;
 		private static string parentName = "Inventory";
 		private InventoryGUI inventoryGUI;
 
 		public void Start() {
-			inventory = new List<GameObject>();
+			inventory = new GameObject[(int)inventorySize.x, (int)inventorySize.y];
 			parent = GameObjectFactory.NewGameObject(parentName, gameObject.transform);
+
+			//	TODO: this smells. clean up.
 			inventoryGUI = parent.AddComponent<InventoryGUI>();
+			inventoryGUI.SetInventoryEventHandler(this);
+			inventoryGUI.itemOffset = itemOffset;
+			inventoryGUI.tilesize = tilesize;
+			inventoryGUI.windowRect = guiSize;
 			inventoryGUI.Hide();
 		}
 
 		/**
 		 * 	Add an object to the inventory
+		 * 	Will add the object to the first open 
+		 * 	location found.
 		 * 	@param obj The GameObject
 		 **/
 		public void AddObject(GameObject obj) {
-			inventory.Add(obj);
+			for (int x = 0; x < inventory.GetLength(0); x++) {
+				for (int y = 0; y < inventory.GetLength(1); y++) {
+					if (inventory[x, y] == null) {
+						AddObject(new Vector2(x, y), obj);
+						return;
+					}
+				}
+			}
+		}
+
+		/**
+		 * 	Add an object at the specific position
+		 * 	@param Vector2 the posotion
+		 * 	@param obj The GameObject
+		 **/
+		public void AddObject(Vector2 position, GameObject obj) {
+			inventory[(int)position.x, (int)position.y] = obj;
 			obj.SetActive(false);
 			obj.transform.parent = parent.transform;
 		}
 
 		/**
 		 * 	Get an object from the inventory at
-		 * 	the given index
-		 * 	@param index The index
+		 * 	the given position.
+		 * 	@param position The position
 		 **/
-		public GameObject GetObject(int index) {
-			GameObject obj = inventory[index];
-			inventory.RemoveAt(index);
+		public GameObject GetObject(Vector2 position) {
+			GameObject obj = inventory[(int)position.x, (int)position.y];
+			if (obj == null) {
+				return null;
+			}
+
+			inventory[(int)position.x, (int)position.y] = null;
 			obj.SetActive(true);
 			obj.transform.parent = null;
 			return obj;
@@ -57,7 +88,7 @@ namespace AdamPassey.Inventory
 		 * 	Show the inventory GUI
 		 **/
 		public void Show() {
-			inventoryGUI.SetObjects(inventory).Show(this);
+			inventoryGUI.SetObjects(inventory).Show();
 		}
 
 		/**

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 namespace AdamPassey.Inventory
 {
-	[AddComponentMenu("Gameplay/Inventory")]
+	[AddComponentMenu("Gameplay/Inventory GUI")]
 	public class InventoryGUI : MonoBehaviour
 	{
+		public Vector2 itemOffset;
+		public int tilesize;
+		public Rect windowRect = new Rect(50, 50, 220, 200);
 
 		private Inventory parentInventory;
-		private List<GameObject> inventory;
-
-		private Rect windowRect = new Rect(50, 50, 220, 200);
+		private GameObject[,] inventory;
 
 		/**
 		 *	Render the inventory GUI
@@ -20,58 +21,69 @@ namespace AdamPassey.Inventory
 		}
 
 		/**
+		 * 	Set the click-event handler
+		 * 	Will notify the handler when an item
+		 * 	is clicked, dragged, etc.
+		 */
+		public void SetInventoryEventHandler(Inventory handler) {
+			parentInventory = handler;
+		}
+
+		/**
 		 * 	Draw the inventory in a draggable window
 		 **/
 		public void OnInventoryWindow(int windowId) {
-			Vector2 position = new Vector2(10, 20);
-			for (int i = 0; i < inventory.Count; i++) {
-				GameObject obj = inventory[i];
-				InventoryItem inventoryItem = obj.GetComponent<InventoryItem>();
+			Vector2 position = itemOffset;
 
-				GUIContent guiContent = inventoryItem.GetGUIContent();
-
-				if (GUI.Button(new Rect(position.x, position.y, 50, 50), guiContent)) {
-					//	TODO: Move this out into a handler
-					//	currently dropping objects that are clicked
-					GameObject droppedObject = parentInventory.GetObject(i);
-					Vector3 pos = transform.position;
-					pos.x += 1f;
-					droppedObject.transform.position = pos;
+			for (int x = 0; x < inventory.GetLength(0); x++) {
+				for (int y = 0; y < inventory.GetLength(1); y++) {
+					if (inventory[x, y] != null) {
+						DrawInventoryItem(new Vector2(x, y), position, tilesize, inventory[x, y].GetComponent<InventoryItem>());
+					}
+					position.x += tilesize;
 				}
-
-				//	TODO: Make a grid of objects
-				//	instead of a row
-				if (i != 0 && i % 4 == 0) {
-					position.x = 10;
-					position.y += 50;
-				} else {
-					position.x += 50;
-				}
+				position.y += tilesize;
+				position.x = itemOffset.y;
 			}
-			//	called at the end as to not
-			//	overwrite button clicks
 			GUI.DragWindow();
 		}
 
+		/**
+		 * 	Draw the specific inventory item
+		 * 	@param position The [x, y] coordinates of the item
+		 * 		in inventory. Used to send messages to Inventory
+		 * 		with item location.
+		 * 	@param guiPosition The [x, y] to draw the item at
+		 * 	@param tilesize The size the inventory item should be.
+		 * 		Assumed to be a square
+		 * 	@param inventoryItem the inventory item itself
+		 **/
+		private void DrawInventoryItem(Vector2 position, Vector2 guiPosition, int tilesize, InventoryItem inventoryItem) {
+			GUIContent guiContent = inventoryItem.GetGUIContent();
+
+			if (GUI.Button(new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize), guiContent)) {
+				GameObject droppedObject = parentInventory.GetObject(position);
+				//	dropping object manually for now
+				Vector2 pos = transform.position;
+				pos.x += 1f;
+				droppedObject.transform.position = pos;
+			}
+		}
 
 		/**
 		 * 	Set the objects to render
 		 * 	@param gameObjects List<GameObject>
 		 **/
-		public InventoryGUI SetObjects(List<GameObject> gameObjects) {
+		public InventoryGUI SetObjects(GameObject[,] gameObjects) {
 			inventory = gameObjects;
 			return this;
 		}
 
 		/**
-		 *	Show the inventory, currently requiring
-		 *	an Inventory to handle the click events.
-		 *	Yuck. Fix this junk.
+		 *	Show the inventory
 		 *	@param parentInventory The inventory
 		 **/
-		//	TODO: clean up how this gets called
-		public void Show(Inventory parentInventory) {
-			this.parentInventory = parentInventory;
+		public void Show() {
 			gameObject.SetActive(true);
 		}
 
