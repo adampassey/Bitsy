@@ -3,14 +3,18 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 using AdamPassey.GameState;
+using AdamPassey.UI;
 
 public class ActorController : MonoBehaviour
 {
 
 	public float speed = 5f;
+	public GameObject collidedInventoryItem;
+
 	private Animator animator;
 	private Rigidbody2D rigidbody;
 	private Inventory inventory;
+	private Popup popup;
 
 	// Use this for initialization
 	void Start() {
@@ -52,6 +56,11 @@ public class ActorController : MonoBehaviour
 			animator.SetBool("Unsheathe", true);
 		}
 
+		if (Input.GetKeyDown(KeyCode.P) && collidedInventoryItem != null) {
+			inventory.AddObject(collidedInventoryItem);
+			collidedInventoryItem = null;
+		}
+
 		if (Input.GetKeyDown(KeyCode.I)) {
 			if (inventory.IsVisible()) {
 				inventory.Hide();
@@ -67,14 +76,20 @@ public class ActorController : MonoBehaviour
 				Time.timeScale = 1.0f;
 			}
 		}
-		
 		transform.Translate(newPosition * speed * Time.deltaTime);
 	}
 
-	public void OnCollisionEnter2D(Collision2D collision) {
-		InventoryItem inventoryItem = collision.gameObject.GetComponent<InventoryItem>();
-		if (inventoryItem != null) {
-			inventory.AddObject(inventoryItem.gameObject);
+	public void OnGUI() {
+		if (collidedInventoryItem != null) {
+			if (popup == null) {
+				popup = gameObject.AddComponent<Popup>();
+				popup.content = "Press 'P' button to pickup " + collidedInventoryItem.name;
+				popup.objectPosition = transform.position;
+			}
+		} else {
+			Destroy(gameObject.GetComponent<Popup>());
+			popup = null;
 		}
 	}
+
 }
