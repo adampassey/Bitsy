@@ -77,6 +77,22 @@ namespace AdamPassey.Inventory
 		}
 
 		/**
+		 * 	Get an object from unknown position
+		 * 	@param GameObject the object to remove
+		 * 		from inventory
+		 **/
+		public GameObject GetObject(GameObject obj) {
+			for (int x = 0; x < inventory.GetLength(0); x++) {
+				for (int y = 0; y < inventory.GetLength(1); y++) {
+					if (inventory[x, y] == obj) {
+						return GetObject(new InventoryPosition(x, y));
+					}
+				}
+			}
+			return null;
+		}
+
+		/**
 		 * 	Convenience method to determine if the
 		 * 	inventory GUI is visible
 		 **/

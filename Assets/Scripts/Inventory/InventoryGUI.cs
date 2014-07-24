@@ -77,7 +77,7 @@ namespace AdamPassey.Inventory
 					//	dropping object manually for now
 					Vector2 pos = transform.position;
 					pos.x += 1f;
-					droppedObject.transform.position = pos;
+					droppedObject.transform.position = parentInventory.transform.position;
 				
 					//	otherwise, they left-clicked
 				} else if (UnityEngine.Event.current.button == 0) {
