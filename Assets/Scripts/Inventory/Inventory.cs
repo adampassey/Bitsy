@@ -41,7 +41,7 @@ namespace AdamPassey.Inventory
 			for (int x = 0; x < inventory.GetLength(0); x++) {
 				for (int y = 0; y < inventory.GetLength(1); y++) {
 					if (inventory[x, y] == null) {
-						AddObject(new Vector2(x, y), obj);
+						AddObject(new InventoryPosition(x, y), obj);
 						return;
 					}
 				}
@@ -50,11 +50,11 @@ namespace AdamPassey.Inventory
 
 		/**
 		 * 	Add an object at the specific position
-		 * 	@param Vector2 the posotion
+		 * 	@param InventoryPosition the position
 		 * 	@param obj The GameObject
 		 **/
-		public void AddObject(Vector2 position, GameObject obj) {
-			inventory[(int)position.x, (int)position.y] = obj;
+		public void AddObject(InventoryPosition position, GameObject obj) {
+			inventory[position.x, position.y] = obj;
 			obj.SetActive(false);
 			obj.transform.parent = parent.transform;
 		}
@@ -64,13 +64,13 @@ namespace AdamPassey.Inventory
 		 * 	the given position.
 		 * 	@param position The position
 		 **/
-		public GameObject GetObject(Vector2 position) {
-			GameObject obj = inventory[(int)position.x, (int)position.y];
+		public GameObject GetObject(InventoryPosition position) {
+			GameObject obj = inventory[position.x, position.y];
 			if (obj == null) {
 				return null;
 			}
 
-			inventory[(int)position.x, (int)position.y] = null;
+			inventory[position.x, position.y] = null;
 			obj.SetActive(true);
 			obj.transform.parent = null;
 			return obj;

@@ -43,9 +43,9 @@ namespace AdamPassey.Inventory
 			for (int x = 0; x < inventory.GetLength(0); x++) {
 				for (int y = 0; y < inventory.GetLength(1); y++) {
 					if (inventory[x, y] != null) {
-						DrawInventoryItem(new Vector2(x, y), position, tilesize, inventory[x, y].GetComponent<InventoryItem>());
+						DrawInventoryItem(new InventoryPosition(x, y), position, tilesize, inventory[x, y].GetComponent<InventoryItem>());
 					} else {
-						DrawInventorySlot(new Vector2(x, y), position, tilesize);
+						DrawInventorySlot(new InventoryPosition(x, y), position, tilesize);
 					}
 					position.x += tilesize;
 				}
@@ -65,7 +65,7 @@ namespace AdamPassey.Inventory
 		 * 		Assumed to be a square
 		 * 	@param inventoryItem the inventory item itself
 		 **/
-		private void DrawInventoryItem(Vector2 position, Vector2 guiPosition, int tilesize, InventoryItem inventoryItem) {
+		private void DrawInventoryItem(InventoryPosition position, Vector2 guiPosition, int tilesize, InventoryItem inventoryItem) {
 			GUIContent guiContent = inventoryItem.GetGUIContent();
 
 			if (GUI.Button(new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize), guiContent)) {
@@ -85,12 +85,12 @@ namespace AdamPassey.Inventory
 					//	they're dragging something,
 					//	swap it with this item
 					if (draggedItem.item != null) {
-						inventory[(int)position.x, (int)position.y] = draggedItem.item.gameObject;
+						inventory[position.x, position.y] = draggedItem.item.gameObject;
 						draggedItem.item = inventoryItem;
 					} else {
 						//	otherwise, set item should be dragged
 						draggedItem.item = inventoryItem;
-						inventory[(int)position.x, (int)position.y] = null;
+						inventory[position.x, position.y] = null;
 					}
 				}
 			}
@@ -99,13 +99,13 @@ namespace AdamPassey.Inventory
 		/**
 		 * 	Draw an open inventory slot
 		 **/
-		private void DrawInventorySlot(Vector2 position, Vector2 guiPosition, int tilesize) {
+		private void DrawInventorySlot(InventoryPosition position, Vector2 guiPosition, int tilesize) {
 			if (GUI.Button(new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize), "")) {
 
 				//	if they left-clicked on this slot AND
 				//	they're dragging an item, drop it in this slot
 				if (UnityEngine.Event.current.button == 0 && draggedItem.item != null) {
-					inventory[(int)position.x, (int)position.y] = draggedItem.item.gameObject;
+					inventory[position.x, position.y] = draggedItem.item.gameObject;
 					draggedItem.item = null;
 				}
 			}
