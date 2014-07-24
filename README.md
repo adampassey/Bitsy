@@ -266,7 +266,7 @@ public void Start() {
 }
 
 public void Update() {
-	if (time.TimeHasPassed(10)) {
+	if (timer.TimeHasPassed(10)) {
 		Debug.Log("10 seconds has passed.");
 	}
 }
