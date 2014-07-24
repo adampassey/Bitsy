@@ -38,6 +38,9 @@ namespace AdamPassey.Inventory
 				return;
 			}
 
+			//	render the item in the front
+			GUI.depth = InventoryLayer.BACK;
+
 			GUIContent guiContent = item.GetGUIContent();
 
 			Vector2 guiPosition = new Vector2();
