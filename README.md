@@ -200,6 +200,58 @@ Persister.Save<NameDataContainer>("name", dataContainer);
 
 ---
 
+**Inventory (Grid-Based)**
+
+The `Inventory` component is a drag-and-drop grid-based inventory. Attach an inventory to any `GameObject` by attaching
+the `Inventory` component. Set the `GUI Size`, `inventory size`, `item offset` (padding around inventory GUI), and `Tilesize` (the
+size of each tile).
+
+Once the inventory is attached, it can be opened and closed easily:
+
+```C#
+using AdamPassey.Inventory;
+
+public class SomeGameObject {
+	
+	private Inventory inventory;
+	
+	//	retrieve the inventory
+	public void Awake() {
+		inventory = gameObject.GetComponent<Inventory>();
+	}
+	
+	//	open and close the inventory
+	public void Update() {
+		if (Input.GetKeyDown(KeyCode.I)) {
+			if (inventory.IsVisible()) {
+				inventory.Hide();
+			} else {
+				inventory.Show();
+			}
+		}
+	}
+	
+	//	add a GameObject to the inventory
+	public void AddGameObjectToInventory(GameObject obj) {
+		inventory.AddObject(obj);
+	}
+	
+	//	add an object at location 1, 1
+	public void AddGameObjectToSpeficicSpotInInventory(GameObject obj) {
+		inventory.AddObject(new InventoryPosition(1, 1), obj);
+	}
+}
+```
+
+All items that can be rendered in the `Inventory` should have an `InventoryItem` component
+attached. This component defines the image that will be rendered, the name (for tooltips), and
+description.
+
+By default the `Inventory` allows for left-click drag-and-drop functionality. Right-clicking
+an item in the inventory will drop it.
+
+---
+
 **Timer**
 
 Using the timer allows you to determine if a specific amount of time has passed. Usage:
