@@ -11,6 +11,113 @@ and only import the component(s) you will be using. The *Usage scripts show impl
 
 ***Current Components***
 
+**Inventory (Grid-Based)**
+
+The `Inventory` component is a drag-and-drop grid-based inventory. Attach an inventory to any `GameObject` by attaching
+the `Inventory` component. Set the `GUI Size`, `inventory size`, `item offset` (padding around inventory GUI), and `Tilesize` (the
+size of each tile).
+
+Once the inventory is attached, it can be opened and closed easily:
+
+```C#
+using AdamPassey.Inventory;
+
+public class SomeGameObject {
+	
+	private Inventory inventory;
+	
+	//	retrieve the inventory
+	public void Awake() {
+		inventory = gameObject.GetComponent<Inventory>();
+	}
+	
+	//	open and close the inventory
+	public void Update() {
+		if (Input.GetKeyDown(KeyCode.I)) {
+			if (inventory.IsVisible()) {
+				inventory.Hide();
+			} else {
+				inventory.Show();
+			}
+		}
+	}
+	
+	//	add a GameObject to the inventory
+	public void AddGameObjectToInventory(GameObject obj) {
+		inventory.AddObject(obj);
+	}
+	
+	//	add an object at location 1, 1
+	public void AddGameObjectToSpeficicSpotInInventory(GameObject obj) {
+		inventory.AddObject(new InventoryPosition(1, 1), obj);
+	}
+}
+```
+
+All items that can be rendered in the `Inventory` should have an `InventoryItem` component
+attached. This component defines the image that will be rendered, the name (for tooltips), and
+description.
+
+By default the `Inventory` allows for left-click drag-and-drop functionality. Right-clicking
+an item in the inventory will drop it. Items can also be clicked by dropping them anywhere outside
+of the inventory window. Transferring items between different inventory windows is also supported.
+
+---
+
+**Persistence**
+
+The persistence package helps with the saving and loading of data through `Data Container`'s. Data that goes into these containers must be serializable, so serializable alternatives to `Vector3` and `GameObject` have been created for use. Also included in this package is an initial `GameObjectDataContainer` for saving the position of `GameObject`'s in a scene.
+
+Using the built-in `GameObjectDataContainer` to save `GameObject`'s is straightforward:
+```C#
+// assuming you have a list of GameObject's
+List<GameObject> list;
+
+//  create the data container
+GameObjectDataContainer dataContainer = new GameObjectDataContainer();
+
+//  iterate through your list, create SerializableGameObject's, 
+//  and add them to the DataContainer
+for (GameObject go in list) {
+	SerializableGameObject serializable = new SerializableGameObject(go);
+	dataContainer.Add(serializable);
+}
+
+//  save this container with this filename
+Persister.Save<GameObjectDataContainer>("game-objects", dataContainer);
+```
+
+You can also use this package to load data:
+```C#
+//  load the data container through the persister
+GameObjectDataContainer dataContainer = Persister.Load<GameObjectDataContainer>("game-objects", new GameObjectDataContainer());
+
+//  if it's not null, we've got data!
+if (dataContainer != null) {
+	//  create GameObject's from the SerializedGameObjects
+	for (SerializableGameObject s in dataContainer.GetData()) {
+		GameObject go = (GameObject) GameObject.Instantiate(somePrefab, s.position.ToVector3(), Quaternion.identity);
+	}
+}
+```
+
+You can also create custom data containers to use:
+```C#
+//  define the Data Container, annotate as Serializable
+[System.Serializable]
+public class NameDataContainer : DataContainer {
+	public string name;
+}
+
+// use this container to save data
+NameDataContainer dataContainer = new NameDataContainer();
+dataContainer.name = "Adam";
+Persister.Save<NameDataContainer>("name", dataContainer);
+```
+
+---
+
+
 **Events**
 
 The Events system provides a way to fire and receive events between game objects without
@@ -144,111 +251,6 @@ public class Bullet : MonoBehavior {
   }
 }
 ```
-
----
-
-**Persistence**
-
-The persistence package helps with the saving and loading of data through `Data Container`'s. Data that goes into these containers must be serializable, so serializable alternatives to `Vector3` and `GameObject` have been created for use. Also included in this package is an initial `GameObjectDataContainer` for saving the position of `GameObject`'s in a scene.
-
-Using the built-in `GameObjectDataContainer` to save `GameObject`'s is straightforward:
-```C#
-// assuming you have a list of GameObject's
-List<GameObject> list;
-
-//  create the data container
-GameObjectDataContainer dataContainer = new GameObjectDataContainer();
-
-//  iterate through your list, create SerializableGameObject's, 
-//  and add them to the DataContainer
-for (GameObject go in list) {
-	SerializableGameObject serializable = new SerializableGameObject(go);
-	dataContainer.Add(serializable);
-}
-
-//  save this container with this filename
-Persister.Save<GameObjectDataContainer>("game-objects", dataContainer);
-```
-
-You can also use this package to load data:
-```C#
-//  load the data container through the persister
-GameObjectDataContainer dataContainer = Persister.Load<GameObjectDataContainer>("game-objects", new GameObjectDataContainer());
-
-//  if it's not null, we've got data!
-if (dataContainer != null) {
-	//  create GameObject's from the SerializedGameObjects
-	for (SerializableGameObject s in dataContainer.GetData()) {
-		GameObject go = (GameObject) GameObject.Instantiate(somePrefab, s.position.ToVector3(), Quaternion.identity);
-	}
-}
-```
-
-You can also create custom data containers to use:
-```C#
-//  define the Data Container, annotate as Serializable
-[System.Serializable]
-public class NameDataContainer : DataContainer {
-	public string name;
-}
-
-// use this container to save data
-NameDataContainer dataContainer = new NameDataContainer();
-dataContainer.name = "Adam";
-Persister.Save<NameDataContainer>("name", dataContainer);
-```
-
----
-
-**Inventory (Grid-Based)**
-
-The `Inventory` component is a drag-and-drop grid-based inventory. Attach an inventory to any `GameObject` by attaching
-the `Inventory` component. Set the `GUI Size`, `inventory size`, `item offset` (padding around inventory GUI), and `Tilesize` (the
-size of each tile).
-
-Once the inventory is attached, it can be opened and closed easily:
-
-```C#
-using AdamPassey.Inventory;
-
-public class SomeGameObject {
-	
-	private Inventory inventory;
-	
-	//	retrieve the inventory
-	public void Awake() {
-		inventory = gameObject.GetComponent<Inventory>();
-	}
-	
-	//	open and close the inventory
-	public void Update() {
-		if (Input.GetKeyDown(KeyCode.I)) {
-			if (inventory.IsVisible()) {
-				inventory.Hide();
-			} else {
-				inventory.Show();
-			}
-		}
-	}
-	
-	//	add a GameObject to the inventory
-	public void AddGameObjectToInventory(GameObject obj) {
-		inventory.AddObject(obj);
-	}
-	
-	//	add an object at location 1, 1
-	public void AddGameObjectToSpeficicSpotInInventory(GameObject obj) {
-		inventory.AddObject(new InventoryPosition(1, 1), obj);
-	}
-}
-```
-
-All items that can be rendered in the `Inventory` should have an `InventoryItem` component
-attached. This component defines the image that will be rendered, the name (for tooltips), and
-description.
-
-By default the `Inventory` allows for left-click drag-and-drop functionality. Right-clicking
-an item in the inventory will drop it.
 
 ---
 
