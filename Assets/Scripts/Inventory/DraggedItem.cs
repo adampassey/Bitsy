@@ -16,6 +16,8 @@ namespace AdamPassey.Inventory
 		public InventoryItem item;
 
 		private static DraggedItem instance;
+		private GameObject droppableScreenOverlay;
+		private bool showDroppableScreenOverlay = false;
 
 		/**
 		 *	Get the instance
@@ -30,17 +32,28 @@ namespace AdamPassey.Inventory
 		}
 
 		/**
+		 *	Create a Droppable Screen Overlay that will receive
+		 *	dragged items being dropped onto it.
+		 *	Creating it separately is important to be able to 
+		 *	explicitly handle the rendering order
+		 **/
+		public void Start() {
+			droppableScreenOverlay = new GameObject();
+			droppableScreenOverlay.gameObject.AddComponent<DroppableScreenOverlay>();
+			droppableScreenOverlay.SetActive(false);
+		}
+
+		/**
 		 * 	Will draw the `InventoryItem`s GUIContent
 		 * 	at current mouse position when fired
 		 **/
 		public void OnGUI() {
 			if (item == null) {
+				showDroppableScreenOverlay = false;
 				return;
 			}
 
-			//	render the item in the front
-			GUI.depth = InventoryLayer.BACK;
-
+			GUI.depth = InventoryLayer.FRONT;
 			GUIContent guiContent = item.GetGUIContent();
 
 			Vector2 guiPosition = new Vector2();
@@ -48,6 +61,23 @@ namespace AdamPassey.Inventory
 			guiPosition.y = Screen.height - Input.mousePosition.y;
 
 			GUI.Button(new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize), guiContent);
+
+			showDroppableScreenOverlay = true;
+		}
+
+		/**
+		 *	For some reason, Unity doesn't like it if you use 
+		 *	gameObject.SetActive(bool) in the OnGUI method. Because
+		 *	of this, I'm using a bool to manage whether or not I'm
+		 *	enabling the droppable screen overlay and setting it
+		 *	here, during Update()
+		 **/
+		public void Update() {
+			if (showDroppableScreenOverlay) {
+				droppableScreenOverlay.SetActive(true);
+			} else {
+				droppableScreenOverlay.SetActive(false);
+			}
 		}
 	}
 }

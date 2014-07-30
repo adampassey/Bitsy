@@ -39,6 +39,7 @@ namespace AdamPassey.Inventory
 		 **/
 		public void OnInventoryWindow(int windowId) {
 			Vector2 position = itemOffset;
+			GUI.depth = InventoryLayer.MID;
 
 			for (int x = 0; x < inventory.GetLength(0); x++) {
 				for (int y = 0; y < inventory.GetLength(1); y++) {
@@ -77,7 +78,7 @@ namespace AdamPassey.Inventory
 					//	dropping object manually for now
 					Vector2 pos = transform.position;
 					pos.x += 1f;
-					droppedObject.transform.position = parentInventory.transform.position;
+					droppedObject.transform.position = pos;
 				
 					//	otherwise, they left-clicked
 				} else if (UnityEngine.Event.current.button == 0) {
