@@ -22,7 +22,7 @@ namespace AdamPassey.Inventory
 		 *	Render the inventory GUI
 		 **/
 		void OnGUI() {
-			windowRect = GUI.Window(0, windowRect, OnInventoryWindow, "Inventory");
+			windowRect = GUI.Window(gameObject.GetInstanceID(), windowRect, OnInventoryWindow, "");
 		}
 
 		/**
