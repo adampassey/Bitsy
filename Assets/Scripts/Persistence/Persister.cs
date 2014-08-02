@@ -44,6 +44,16 @@ namespace  AdamPassey.Persistence
 		}
 
 		/**
+		 * 	Delete the specified file
+		 * 
+		 * 	@param filename The name of the file to delete
+		 * 		is relative to applications persistence path
+		 **/
+		public static void Delete(string filename) {
+			File.Delete(PersistencePath(filename));
+		}
+
+		/**
 		 * 	Given a filepath, construct an absolute path within
 		 * 	the applications persistent data path.
 		 **/
