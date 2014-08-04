@@ -107,9 +107,14 @@ namespace AdamPassey.Inventory
 			Rect renderingRect = new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize);
 			GUI.Box(renderingRect, "");
 
-			//	if the mouse is over this element, focus this window
+			//	if the mouse is over this element
 			if (renderingRect.Contains(UnityEngine.Event.current.mousePosition)) {
-				GUI.FocusWindow(gameObject.GetInstanceID());
+
+				//	if something is being dragged, focus the window-
+				//	otherwise the mouseUp event doesn't propagate through
+				if (draggedItem.item != null) {
+					GUI.FocusWindow(gameObject.GetInstanceID());
+				}
 
 				//	if there's a mouseUp event on this slot, drop the dragged item on it
 				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
