@@ -27,23 +27,24 @@ namespace AdamPassey.Inventory
 		 * 	drop the currently dragged item at the location
 		 **/
 		public void OnGUI() {
-			//	draw the button that receives drop events
-			GUIStyle guiStyle = new GUIStyle();
-			GUI.depth = InventoryLayer.BACKGROUND;
+			//	instead of drawing a GUI element, just check if a
+			//	mouseUp event happens that propagates all the way to here
+			Rect renderingRect = new Rect(0, 0, Screen.width, Screen.height);
 
-			if (GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "", guiStyle)) {
-				if (UnityEngine.Event.current.button == 0 && draggedItem.item != null) {
+			//	and drop the item (manually) if it does
+			if (renderingRect.Contains(UnityEngine.Event.current.mousePosition)) {
+				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
+
+					//	TODO: this should be performed by a handler
 					GameObject obj = draggedItem.item.gameObject;
-
-					//	TODO: dropping object at mouse position
-					//	yes this is not ideal- should drop
-					//	near the player
 					Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 					pos.z = 0;
 					obj.transform.position = pos;
 					obj.SetActive(true);
 					obj.transform.parent = null;
 					draggedItem.item = null;
+
+					UnityEngine.Event.current.Use();
 				}
 			}
 		}

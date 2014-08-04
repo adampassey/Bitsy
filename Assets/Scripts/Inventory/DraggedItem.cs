@@ -60,7 +60,7 @@ namespace AdamPassey.Inventory
 			guiPosition.x = Input.mousePosition.x;
 			guiPosition.y = Screen.height - Input.mousePosition.y;
 
-			GUI.Button(new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize), guiContent);
+			GUI.Box(new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize), guiContent);
 
 			showDroppableScreenOverlay = true;
 		}

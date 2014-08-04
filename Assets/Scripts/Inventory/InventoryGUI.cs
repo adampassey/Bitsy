@@ -22,6 +22,7 @@ namespace AdamPassey.Inventory
 		 *	Render the inventory GUI
 		 **/
 		void OnGUI() {
+			//	using the Instance ID as the window ID
 			windowRect = GUI.Window(gameObject.GetInstanceID(), windowRect, OnInventoryWindow, "");
 		}
 
@@ -53,7 +54,11 @@ namespace AdamPassey.Inventory
 				position.y += tilesize;
 				position.x = itemOffset.y;
 			}
-			GUI.DragWindow();
+			//	if there is no dragged item, 
+			//	this window is draggable
+			if (draggedItem.item == null) {
+				GUI.DragWindow();
+			}
 		}
 
 		/**
@@ -68,31 +73,26 @@ namespace AdamPassey.Inventory
 		 **/
 		private void DrawInventoryItem(InventoryPosition position, Vector2 guiPosition, int tilesize, InventoryItem inventoryItem) {
 			GUIContent guiContent = inventoryItem.GetGUIContent();
+			Rect renderingRect = new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize);
+			GUI.Box(renderingRect, guiContent);
 
-			if (GUI.Button(new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize), guiContent)) {
+			//	if the position of the current mouse event is within the rendering window
+			if (renderingRect.Contains(UnityEngine.Event.current.mousePosition)) {
 
-				//	if this is a right-click, drop the item
-				if (UnityEngine.Event.current.button == 1) {
-					GameObject droppedObject = parentInventory.GetObject(position);
+				//	and this is a mouseDrag or mouseUp event, handle it
+				if (UnityEngine.Event.current.type == EventType.MouseDrag || UnityEngine.Event.current.type == EventType.MouseUp) {
 
-					//	dropping object manually for now
-					Vector2 pos = transform.position;
-					pos.x += 1f;
-					droppedObject.transform.position = pos;
-				
-					//	otherwise, they left-clicked
-				} else if (UnityEngine.Event.current.button == 0) {
-
-					//	they're dragging something,
-					//	swap it with this item
+					//	begin dragging this item
 					if (draggedItem.item != null) {
 						inventory[position.x, position.y] = draggedItem.item.gameObject;
 						draggedItem.item = inventoryItem;
 					} else {
-						//	otherwise, set item should be dragged
+
+						//	swap the dragged item with the one in this position
 						draggedItem.item = inventoryItem;
 						inventory[position.x, position.y] = null;
 					}
+					UnityEngine.Event.current.Use();
 				}
 			}
 		}
@@ -101,13 +101,21 @@ namespace AdamPassey.Inventory
 		 * 	Draw an open inventory slot
 		 **/
 		private void DrawInventorySlot(InventoryPosition position, Vector2 guiPosition, int tilesize) {
-			if (GUI.Button(new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize), "")) {
 
-				//	if they left-clicked on this slot AND
-				//	they're dragging an item, drop it in this slot
-				if (UnityEngine.Event.current.button == 0 && draggedItem.item != null) {
+			//	create the rendering rect to serve as the rendering position 
+			//	and the event-receiving area
+			Rect renderingRect = new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize);
+			GUI.Box(renderingRect, "");
+
+			//	if the mouse is over this element, focus this window
+			if (renderingRect.Contains(UnityEngine.Event.current.mousePosition)) {
+				GUI.FocusWindow(gameObject.GetInstanceID());
+
+				//	if there's a mouseUp event on this slot, drop the dragged item on it
+				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
 					inventory[position.x, position.y] = draggedItem.item.gameObject;
 					draggedItem.item = null;
+					UnityEngine.Event.current.Use();
 				}
 			}
 		}
