@@ -1,7 +1,7 @@
 Bitsy
 =================
 
-A collection of itsy-bitsy [Unity](http://unity3d.com/) components written by [Adam Passey](http://adampassey.com).
+A collection of itsy-bitsy [Unity](http://unity3d.com/) components written by [Adam Passey](http://adampassey.com). Take a look at some of these components in action by visiting the [example page](http://adampassey.github.io/bitsy/Example/).
 
 ***Importing***
 
