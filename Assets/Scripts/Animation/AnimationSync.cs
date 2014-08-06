@@ -30,11 +30,8 @@ namespace AdamPassey.Animation
 			AnimationInfo[] animationInfo = animator.GetCurrentAnimationClipState(0);
 			string clipName = string.Empty;
 
-			foreach (AnimationInfo ai in animationInfo) {
-				if (ai.clip.isLooping) {
-					clipName = ai.clip.name;
-					break;
-				}
+			if (animationInfo.Length > 0) {
+				clipName = animationInfo[0].clip.name;
 			}
 
 			if (currentClipName != clipName) {
