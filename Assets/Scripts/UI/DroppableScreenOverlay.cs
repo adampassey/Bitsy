@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Inventory
+namespace AdamPassey.UserInterface
 {
 	/**
 	 * 	Creates a button that overlays the screen-

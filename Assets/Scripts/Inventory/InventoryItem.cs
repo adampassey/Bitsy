@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.UI;
+using AdamPassey.UserInterface;
 
 namespace AdamPassey.Inventory
 {

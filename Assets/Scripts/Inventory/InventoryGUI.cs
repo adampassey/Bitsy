@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+using AdamPassey.UserInterface;
+
 namespace AdamPassey.Inventory
 {
 	[AddComponentMenu("Gameplay/Inventory GUI")]
@@ -45,9 +47,9 @@ namespace AdamPassey.Inventory
 			for (int x = 0; x < inventory.GetLength(0); x++) {
 				for (int y = 0; y < inventory.GetLength(1); y++) {
 					if (inventory[x, y] != null) {
-						DrawInventoryItem(new InventoryPosition(x, y), position, tilesize, inventory[x, y].GetComponent<InventoryItem>());
+						UI.Draggable(new InventoryPosition(x, y), position, tilesize, inventory[x, y].GetComponent<InventoryItem>(), inventory);
 					} else {
-						DrawInventorySlot(new InventoryPosition(x, y), position, tilesize);
+						UI.Droppable(new InventoryPosition(x, y), position, tilesize, inventory, gameObject);
 					}
 					position.x += tilesize;
 				}
@@ -58,70 +60,6 @@ namespace AdamPassey.Inventory
 			//	this window is draggable
 			if (draggedItem.item == null) {
 				GUI.DragWindow();
-			}
-		}
-
-		/**
-		 * 	Draw the specific inventory item
-		 * 	@param position The [x, y] coordinates of the item
-		 * 		in inventory. Used to send messages to Inventory
-		 * 		with item location.
-		 * 	@param guiPosition The [x, y] to draw the item at
-		 * 	@param tilesize The size the inventory item should be.
-		 * 		Assumed to be a square
-		 * 	@param inventoryItem the inventory item itself
-		 **/
-		private void DrawInventoryItem(InventoryPosition position, Vector2 guiPosition, int tilesize, InventoryItem inventoryItem) {
-			GUIContent guiContent = inventoryItem.GetGUIContent();
-			Rect renderingRect = new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize);
-			GUI.Box(renderingRect, guiContent);
-
-			//	if the position of the current mouse event is within the rendering window
-			if (renderingRect.Contains(UnityEngine.Event.current.mousePosition)) {
-
-				//	and this is a mouseDrag or mouseUp event, handle it
-				if (UnityEngine.Event.current.type == EventType.MouseDrag || UnityEngine.Event.current.type == EventType.MouseUp) {
-
-					//	begin dragging this item
-					if (draggedItem.item != null) {
-						inventory[position.x, position.y] = draggedItem.item.gameObject;
-						draggedItem.item = inventoryItem;
-					} else {
-
-						//	swap the dragged item with the one in this position
-						draggedItem.item = inventoryItem;
-						inventory[position.x, position.y] = null;
-					}
-					UnityEngine.Event.current.Use();
-				}
-			}
-		}
-
-		/**
-		 * 	Draw an open inventory slot
-		 **/
-		private void DrawInventorySlot(InventoryPosition position, Vector2 guiPosition, int tilesize) {
-
-			//	create the rendering rect to serve as the rendering position 
-			//	and the event-receiving area
-			Rect renderingRect = new Rect(guiPosition.x, guiPosition.y, tilesize, tilesize);
-			GUI.Box(renderingRect, "");
-
-			//	if the mouse is over this element
-			if (renderingRect.Contains(UnityEngine.Event.current.mousePosition)) {
-
-				//	if something is being dragged, focus the window-
-				//	otherwise the mouseUp event doesn't propagate through
-				if (draggedItem.item != null) {
-					GUI.FocusWindow(gameObject.GetInstanceID());
-				}
-
-				//	if there's a mouseUp event on this slot, drop the dragged item on it
-				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
-					inventory[position.x, position.y] = draggedItem.item.gameObject;
-					draggedItem.item = null;
-					UnityEngine.Event.current.Use();
-				}
 			}
 		}
 
