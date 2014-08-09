@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using AdamPassey.UserInterface;
+using AdamPassey.Inventory.Handler;
 
 namespace AdamPassey.Inventory
 {
@@ -47,9 +48,14 @@ namespace AdamPassey.Inventory
 			for (int x = 0; x < inventory.GetLength(0); x++) {
 				for (int y = 0; y < inventory.GetLength(1); y++) {
 					if (inventory[x, y] != null) {
-						UI.Draggable(new InventoryPosition(x, y), position, tilesize, inventory[x, y].GetComponent<InventoryItem>(), inventory);
+						//	create a UI.Draggable element
+						InventoryItem item = inventory[x, y].GetComponent<InventoryItem>();
+						InventoryDraggableHandler draggableHandler = new InventoryDraggableHandler(gameObject, new InventoryPosition(x, y), inventory, item); 
+						UI.Draggable(new Rect(position.x, position.y, tilesize, tilesize), item.GetGUIContent(), new GUIStyle("button"), draggableHandler); 
 					} else {
-						UI.Droppable(new InventoryPosition(x, y), position, tilesize, inventory, gameObject);
+						//	create a UI.Slot
+						InventorySlotHandler slotHandler = new InventorySlotHandler(gameObject, new InventoryPosition(x, y), inventory);
+						UI.Slot(new Rect(position.x, position.y, tilesize, tilesize), new GUIStyle("button"), slotHandler);
 					}
 					position.x += tilesize;
 				}
