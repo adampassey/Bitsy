@@ -3,7 +3,7 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 using AdamPassey.GameState;
-using AdamPassey.UI;
+using AdamPassey.UserInterface;
 
 public class ActorController : MonoBehaviour
 {
