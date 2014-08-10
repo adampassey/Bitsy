@@ -2,8 +2,10 @@
 using System.Collections;
 
 using AdamPassey.Inventory;
+using AdamPassey.Equipment;
 using AdamPassey.GameState;
 using AdamPassey.UserInterface;
+using AdamPassey.Animation;
 
 public class ActorController : MonoBehaviour
 {
@@ -14,13 +16,21 @@ public class ActorController : MonoBehaviour
 	private Animator animator;
 	private Rigidbody2D rigidbody;
 	private Inventory inventory;
+	private Equipment equipment;
 	private Popup popup;
+	private AnimationSync animationSync;
 
 	// Use this for initialization
 	void Start() {
 		animator = gameObject.GetComponent<Animator>();
 		rigidbody = gameObject.GetComponent<Rigidbody2D>();
 		inventory = gameObject.GetComponent<Inventory>();
+		equipment = gameObject.GetComponent<Equipment>();
+		animationSync = gameObject.GetComponent<AnimationSync>();
+
+		//	equipment requires an animation sync
+		//	to sync the animation of worn items
+		equipment.animationSync = animationSync;
 
 		GameState.SetState(GameState.States.Running);
 	}
@@ -66,6 +76,14 @@ public class ActorController : MonoBehaviour
 				inventory.Hide();
 			} else {
 				inventory.Show();
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.E)) {
+			if (equipment.IsVisible()) {
+				equipment.Hide();
+			} else {
+				equipment.Show();
 			}
 		}
 

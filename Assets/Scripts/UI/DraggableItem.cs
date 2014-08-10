@@ -11,7 +11,7 @@ namespace AdamPassey.UserInterface
 
 		private DraggedItem draggedItem;
 
-		public void Awake() {
+		public void Start() {
 			draggedItem = DraggedItem.GetInstance();
 		}
 

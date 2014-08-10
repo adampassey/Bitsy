@@ -44,8 +44,9 @@ namespace AdamPassey.Inventory.Handler
 		 **/
 		public void MouseUp(UnityEngine.Event e) {
 			if (draggedItem.item != null) {
+				GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
 				inventory[inventoryPosition.x, inventoryPosition.y] = draggedItem.item.gameObject;
-				draggedItem.item = null;
+				draggedItem.item = tmpInventoryItem.GetComponent<InventoryItem>();
 				e.Use();
 			} else {
 				StartDrag(e);

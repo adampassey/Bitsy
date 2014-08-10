@@ -47,6 +47,10 @@ namespace AdamPassey.Animation
 		 **/
 		public void ReloadChildAnimators() {
 			childAnimators = GetComponentsInChildren<Animator>();
+
+			//	setting to null so all new animators
+			//	sync from the frame they're reloaded
+			currentClipName = null;
 		}
 
 		/**
