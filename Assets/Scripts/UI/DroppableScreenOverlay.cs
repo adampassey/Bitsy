@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Inventory
+namespace AdamPassey.UserInterface
 {
 	/**
 	 * 	Creates a button that overlays the screen-
@@ -35,14 +35,7 @@ namespace AdamPassey.Inventory
 			if (renderingRect.Contains(UnityEngine.Event.current.mousePosition)) {
 				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
 
-					//	TODO: this should be performed by a handler
-					GameObject obj = draggedItem.item.gameObject;
-					Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-					pos.z = 0;
-					obj.transform.position = pos;
-					obj.SetActive(true);
-					obj.transform.parent = null;
-					draggedItem.item = null;
+					draggedItem.item.Drop();
 
 					UnityEngine.Event.current.Use();
 				}

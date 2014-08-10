@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Inventory
+using AdamPassey.Inventory;
+
+namespace AdamPassey.UserInterface
 {
 	/**
 	 * 	Singleton that contains the item that is
@@ -13,7 +15,7 @@ namespace AdamPassey.Inventory
 	public class DraggedItem : MonoBehaviour
 	{
 		public int tilesize = 50;
-		public InventoryItem item;
+		public DraggableItem item;
 
 		private static DraggedItem instance;
 		private GameObject droppableScreenOverlay;

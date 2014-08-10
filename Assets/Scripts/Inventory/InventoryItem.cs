@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.UI;
+using AdamPassey.UserInterface;
 
 namespace AdamPassey.Inventory
 {
@@ -14,24 +14,8 @@ namespace AdamPassey.Inventory
 	 * 
 	 **/
 	[AddComponentMenu("Gameplay/Inventory Item")]
-	public class InventoryItem : MonoBehaviour
+	public class InventoryItem : DraggableItem
 	{
-		public Texture2D texture;
-		public string name;
-		public string description;
-		public Vector2 popupOffset;
-
-		/**
-		 * 	The GUI Content to display in inventory
-		 **/
-		public GUIContent GetGUIContent() {
-			GUIContent guiContent = new GUIContent();
-			guiContent.tooltip = name;
-			guiContent.image = texture;
-
-			return guiContent;
-		}
-
 		/**
 		 * 	Currently using a propery in Actor to set the
 		 * 	collided inventory item. 
