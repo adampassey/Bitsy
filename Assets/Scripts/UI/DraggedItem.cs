@@ -15,7 +15,7 @@ namespace AdamPassey.UserInterface
 	public class DraggedItem : MonoBehaviour
 	{
 		public int tilesize = 50;
-		public InventoryItem item;
+		public DraggableItem item;
 
 		private static DraggedItem instance;
 		private GameObject droppableScreenOverlay;
