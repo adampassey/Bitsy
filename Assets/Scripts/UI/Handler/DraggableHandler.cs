@@ -8,9 +8,17 @@ namespace AdamPassey.UserInterface.Handler
 	 **/
 	public interface DraggableHandler
 	{
-		void MouseDrag(UnityEngine.Event e);
-		
-		void MouseUp(UnityEngine.Event e);
-		
+		void Hover();
+
+		void Hover(DraggableItem item);
+
+		//	return a DraggableItem to start dragging it
+		DraggableItem Drag(UnityEngine.Event e);
+
+		//	return a DraggableItem to start dragging it
+		DraggableItem Click(UnityEngine.Event e);
+
+		//	return a DraggableItem to start dragging it
+		DraggableItem ItemDropped(UnityEngine.Event e, DraggableItem item);
 	}
 }

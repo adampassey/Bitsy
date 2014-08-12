@@ -12,7 +12,6 @@ namespace AdamPassey.Inventory.Handler
 		private InventoryPosition inventoryPosition;
 		private GameObject[,] inventory;
 		private InventoryItem item;
-		private DraggedItem draggedItem;
 
 		public InventoryDraggableHandler(GameObject window, InventoryPosition inventoryPosition, GameObject[,] inventory, InventoryItem item)
 		{
@@ -20,46 +19,52 @@ namespace AdamPassey.Inventory.Handler
 			this.inventoryPosition = inventoryPosition;
 			this.inventory = inventory;
 			this.item = item;
-			this.draggedItem = DraggedItem.GetInstance();
+		}
+
+		public void Hover() {
+			
+		}
+		
+		public void Hover(DraggableItem item) {
+			GUI.FocusWindow(window.GetInstanceID());
 		}
 
 		/**
-		 * 	When a MouseDrag event is received
-		 * 	start a drag if there's nothing currently
-		 * 	being dragged.
+		 * 	When a Drag event is received
+		 * 	start a drag
 		 * 
 		 **/
-		public void MouseDrag(UnityEngine.Event e) {
-			if (draggedItem.item == null) {
-				StartDrag(e);
-			}
+		public DraggableItem Drag(UnityEngine.Event e) {
+			return StartDrag(e);
 		}
 
 		/**
-		 * 	A MouseUp event means the element was clicked
-		 * 	OR a drag was released. If something is being dragged
-		 * 	swap it with this item.
-		 * 	Otherwise, start a drag.
+		 * 	On Click start a drag
 		 * 
 		 **/
-		public void MouseUp(UnityEngine.Event e) {
-			if (draggedItem.item != null) {
-				GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
-				inventory[inventoryPosition.x, inventoryPosition.y] = draggedItem.item.gameObject;
-				draggedItem.item = tmpInventoryItem.GetComponent<InventoryItem>();
-				e.Use();
-			} else {
-				StartDrag(e);
-			}
+		public DraggableItem Click(UnityEngine.Event e) {
+			return StartDrag(e);
+		}
+
+		/**
+		 * 	An item was dropped on this slot. Swap it with the 
+		 * 	item currently in that position and return it
+		 * 
+		 **/
+		public DraggableItem ItemDropped(UnityEngine.Event e, DraggableItem item) {
+			GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
+			inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
+			e.Use();
+			return tmpInventoryItem.GetComponent<InventoryItem>();
 		}
 
 		/**
 		 * 	Start a drag and use up this event
 		 **/
-		private void StartDrag(UnityEngine.Event e) {
-			draggedItem.item = item;
+		private DraggableItem StartDrag(UnityEngine.Event e) {
 			inventory[inventoryPosition.x, inventoryPosition.y] = null;
 			e.Use();
+			return item;
 		}
 	}
 }

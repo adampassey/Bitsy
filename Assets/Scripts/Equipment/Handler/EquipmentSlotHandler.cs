@@ -9,7 +9,6 @@ namespace AdamPassey.Equipment.Handler
 	public class EquipmentSlotHandler : SlotHandler
 	{
 		private GameObject window;
-		private DraggedItem draggedItem;
 		private EquipmentType equipmentType;
 		private Equipment equipment;
 
@@ -18,40 +17,35 @@ namespace AdamPassey.Equipment.Handler
 			this.window = window;
 			this.equipmentType = equipmentType;
 			this.equipment = equipment;
-			draggedItem = DraggedItem.GetInstance();
 		}
 
 		/**
-		 * 	When hovered, focus this window if an item is
-		 * 	being dragged.
+		 * 	When hovered, focus this window
 		 * 
 		 **/
 		public void Hover() {
-			if (draggedItem.item != null) {
-				GUI.FocusWindow(window.GetInstanceID());
-			}
+			GUI.FocusWindow(window.GetInstanceID());
 		}
 
 		/**
-		 * 	When a MouseUp event happens, will first check to see
-		 * 	if an item is being dragged. If it is, will check to see
-		 * 	if that item is an EquipmentItem and if it matches this
-		 * 	slot's type. 
+		 * 	When an item is dropped on this slot, we'll check to
+		 * 	see if that item is an EquipmentItem and if it matches
+		 * 	this slot's type. 
 		 * 
 		 * 	Currently does not swap out equipment of different types.
+		 * 
 		 **/
-		public void MouseUp(UnityEngine.Event e) {
-			if (draggedItem != null) {
-				GameObject ob = draggedItem.item.gameObject;
-				EquipmentItem item = ob.GetComponent<EquipmentItem>();
-				if (item != null && item.equipmentType == equipmentType) {
-					if (equipment.IsSlotFree(equipmentType)) {
-						equipment.Equip(equipmentType, item);
-						draggedItem.item = null;
-					}
+		public bool ItemDropped(UnityEngine.Event e, DraggableItem item) {
+			GameObject ob = item.gameObject;
+			EquipmentItem equipmentItem = ob.GetComponent<EquipmentItem>();
+			if (item != null && equipmentItem.equipmentType == equipmentType) {
+				if (equipment.IsSlotFree(equipmentType)) {
+					equipment.Equip(equipmentType, equipmentItem);
+					return true;
 				}
 			}
 			e.Use();
+			return false;
 		}
 	}
 }

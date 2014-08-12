@@ -11,27 +11,21 @@ namespace AdamPassey.Inventory.Handler
 		private GameObject window;
 		private InventoryPosition inventoryPosition;
 		private GameObject[,] inventory;
-		private DraggedItem draggedItem;
 
 		public InventorySlotHandler(GameObject window, InventoryPosition inventoryPosition, GameObject[,] inventory)
 		{
 			this.window = window;
 			this.inventoryPosition = inventoryPosition;
 			this.inventory = inventory;
-			this.draggedItem = DraggedItem.GetInstance();
 		}
 
 		/**
-		 * 	When a Hover event is received, let's make sure
-		 * 	the parent window is active if something is being
-		 * 	dragged. Otherwise, the window may not receive
-		 * 	the drop (MouseUp) event.
+		 * 	When a Hover event is received, focus the parent
+		 * 	window.
 		 * 
 		 **/
 		public void Hover() {
-			if (draggedItem.item != null) {
-				GUI.FocusWindow(window.GetInstanceID());
-			}
+			GUI.FocusWindow(window.GetInstanceID());
 		}
 
 		/**
@@ -40,12 +34,10 @@ namespace AdamPassey.Inventory.Handler
 		 * 	use the event.
 		 * 
 		 **/
-		public void MouseUp(UnityEngine.Event e) {
-			if (draggedItem.item != null) {
-				inventory[inventoryPosition.x, inventoryPosition.y] = draggedItem.item.gameObject;
-				draggedItem.item = null;
-				e.Use();
-			}
+		public bool ItemDropped(UnityEngine.Event e, DraggableItem item) {
+			inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
+			e.Use();
+			return true;
 		}
 	}
 }

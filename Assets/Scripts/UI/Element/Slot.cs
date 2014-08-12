@@ -8,6 +8,12 @@ namespace AdamPassey.UserInterface.Element
 {
 	public static class Slot
 	{
+		private static DraggedItem draggedItem;
+
+		static Slot()
+		{
+			draggedItem = DraggedItem.GetInstance();
+		}
 		/**
 		 * 	Draw an open inventory slot
 		 **/
@@ -20,11 +26,15 @@ namespace AdamPassey.UserInterface.Element
 			if (position.Contains(UnityEngine.Event.current.mousePosition)) {
 
 				//	fire the hover event on the handler
-				handler.Hover();
+				if (draggedItem.item != null) {
+					handler.Hover();
+				}
 
 				//	fire the mouse-up event on the handler
-				if (UnityEngine.Event.current.type == EventType.MouseUp) {
-					handler.MouseUp(UnityEngine.Event.current);
+				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
+					if (handler.ItemDropped(UnityEngine.Event.current, draggedItem.item)) {
+						draggedItem.item = null;
+					}
 				}
 			}
 		}
