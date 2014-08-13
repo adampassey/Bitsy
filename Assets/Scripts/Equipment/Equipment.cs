@@ -14,12 +14,14 @@ namespace AdamPassey.Equipment
 		private Dictionary<EquipmentType, GameObject> equipment;
 		private EquipmentGUI equipmentGUI;
 		private GameObject equipmentContainer;
+		private GameObject equipmentGUIContainer;
 
 		// Use this for initialization
 		void Start() {
 			equipment = new Dictionary<EquipmentType, GameObject>();
 			equipmentContainer = GameObjectFactory.NewGameObject("Equipment", gameObject.transform);
-			equipmentGUI = equipmentContainer.AddComponent<EquipmentGUI>();
+			equipmentGUIContainer = GameObjectFactory.NewGameObject("Equipment GUI", gameObject.transform);
+			equipmentGUI = equipmentGUIContainer.AddComponent<EquipmentGUI>();
 
 			equipmentGUI.equipment = this;
 		}
