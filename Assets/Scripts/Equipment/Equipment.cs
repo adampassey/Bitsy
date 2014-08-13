@@ -36,12 +36,10 @@ namespace AdamPassey.Equipment
 		 **/
 		public void Equip(EquipmentType type, EquipmentItem item) {
 			DisableItem(item);
-			item.gameObject.SetActive(true);
-			item.gameObject.transform.parent = equipmentContainer.transform;
-			item.transform.localPosition = Vector3.zero;
 			equipment.Add(type, item.gameObject);
-
 			animationSync.ReloadChildAnimators();
+
+			item.Equip();
 		}
 
 		/**
@@ -54,13 +52,11 @@ namespace AdamPassey.Equipment
 		public EquipmentItem Unequip(EquipmentType type) {
 			if (equipment.ContainsKey(type)) {
 				EquipmentItem item = equipment[type].GetComponent<EquipmentItem>();
-				equipment.Remove(type);
-				item.transform.parent = null;
-
 				EnableItem(item);
-				item.gameObject.SetActive(false);
+				equipment.Remove(type);
 				animationSync.ReloadChildAnimators();
 
+				item.Unequip();
 				return item;
 			}
 			return null;
@@ -94,11 +90,17 @@ namespace AdamPassey.Equipment
 		/**
 		 * 	Disable this item- should be called when an item is
 		 * 	equipped. This will disable the BoxCollider2D and
-		 * 	RigidBody2D components.
+		 * 	RigidBody2D components. It will set the item to Active
+		 * 	and it's parent to the equipment container- as well as
+		 * 	setting it's localPosition to Vector3.zero, relying on
+		 * 	the position of the item in the spritesheet
 		 * 
 		 * 	@param EquipmentItem item The item
 		 **/
 		private void DisableItem(EquipmentItem item) {
+			item.gameObject.SetActive(true);
+			item.gameObject.transform.parent = equipmentContainer.transform;
+			item.transform.localPosition = Vector3.zero;
 			item.GetComponent<BoxCollider2D>().enabled = false;
 			item.rigidbody2D.isKinematic = true;
 		}
@@ -106,11 +108,14 @@ namespace AdamPassey.Equipment
 		/**
 		 * 	Enable this item- should be called when an item
 		 * 	is unequipped. This will re-enable the BoxCollider2D
-		 * 	and RigiBody2D components.
+		 * 	and RigiBody2D components. Will set it's parent to
+		 * 	null, and Active to false (so it won't render)
 		 * 
 		 * 	@param EquipmentItem item The item
 		 **/
 		private void EnableItem(EquipmentItem item) {
+			item.transform.parent = null;
+			item.gameObject.SetActive(false);
 			item.GetComponent<BoxCollider2D>().enabled = true;
 			item.rigidbody2D.isKinematic = false;
 		}
