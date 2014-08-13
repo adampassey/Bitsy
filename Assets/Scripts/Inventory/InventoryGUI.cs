@@ -22,20 +22,35 @@ namespace AdamPassey.Inventory
 		}
 
 		/**
+		 * 	Factory for building the InventoryGUI
+		 * 	
+		 * 	@param GameObject parent The parent game object to attach
+		 * 		the GUI window to
+		 * 	@param Inventory inventory The inventory
+		 * 	@param Vector2 itemOffset The x, y offset of the items displaying
+		 * 		in the GUI window
+		 * 	@param int tilesize The size of the tiles (they're square)
+		 * 	@param Rect windowSize The size of the GUI Window
+		 * 
+		 **/
+		public static InventoryGUI CreateComponent(GameObject parent, Inventory inventory, Vector2 itemOffset, int tilesize, Rect windowSize) {
+			InventoryGUI inventoryGUI = parent.AddComponent<InventoryGUI>();
+
+			inventoryGUI.parentInventory = inventory;
+			inventoryGUI.itemOffset = itemOffset;
+			inventoryGUI.tilesize = tilesize;
+			inventoryGUI.windowRect = windowSize;
+			inventoryGUI.Hide();
+
+			return inventoryGUI;
+		}
+
+		/**
 		 *	Render the inventory GUI
 		 **/
 		void OnGUI() {
 			//	using the Instance ID as the window ID
 			windowRect = GUI.Window(gameObject.GetInstanceID(), windowRect, OnInventoryWindow, "");
-		}
-
-		/**
-		 * 	Set the click-event handler
-		 * 	Will notify the handler when an item
-		 * 	is clicked, dragged, etc.
-		 */
-		public void SetInventoryEventHandler(Inventory handler) {
-			parentInventory = handler;
 		}
 
 		/**
