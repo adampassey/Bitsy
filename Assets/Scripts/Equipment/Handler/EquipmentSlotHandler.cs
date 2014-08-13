@@ -35,7 +35,7 @@ namespace AdamPassey.Equipment.Handler
 		 * 	Currently does not swap out equipment of different types.
 		 * 
 		 **/
-		public bool ItemDropped(UnityEngine.Event e, DraggableItem item) {
+		public bool ItemDropped(DraggableItem item) {
 			GameObject ob = item.gameObject;
 			EquipmentItem equipmentItem = ob.GetComponent<EquipmentItem>();
 			if (item != null && equipmentItem.equipmentType == equipmentType) {
@@ -44,7 +44,6 @@ namespace AdamPassey.Equipment.Handler
 					return true;
 				}
 			}
-			e.Use();
 			return false;
 		}
 	}

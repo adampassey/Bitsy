@@ -13,12 +13,12 @@ namespace AdamPassey.UserInterface.Handler
 		void Hover(DraggableItem item);
 
 		//	return a DraggableItem to start dragging it
-		DraggableItem Drag(UnityEngine.Event e);
+		DraggableItem Drag();
 
 		//	return a DraggableItem to start dragging it
-		DraggableItem Click(UnityEngine.Event e);
+		DraggableItem Click();
 
 		//	return a DraggableItem to start dragging it
-		DraggableItem ItemDropped(UnityEngine.Event e, DraggableItem item);
+		DraggableItem ItemDropped(DraggableItem item);
 	}
 }

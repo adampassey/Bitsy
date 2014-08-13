@@ -32,9 +32,10 @@ namespace AdamPassey.UserInterface.Element
 
 				//	fire the mouse-up event on the handler
 				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
-					if (handler.ItemDropped(UnityEngine.Event.current, draggedItem.item)) {
+					if (handler.ItemDropped(draggedItem.item)) {
 						draggedItem.item = null;
 					}
+					UnityEngine.Event.current.Use();
 				}
 			}
 		}

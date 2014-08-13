@@ -34,16 +34,16 @@ namespace AdamPassey.Inventory.Handler
 		 * 	start a drag
 		 * 
 		 **/
-		public DraggableItem Drag(UnityEngine.Event e) {
-			return StartDrag(e);
+		public DraggableItem Drag() {
+			return StartDrag();
 		}
 
 		/**
 		 * 	On Click start a drag
 		 * 
 		 **/
-		public DraggableItem Click(UnityEngine.Event e) {
-			return StartDrag(e);
+		public DraggableItem Click() {
+			return StartDrag();
 		}
 
 		/**
@@ -51,19 +51,17 @@ namespace AdamPassey.Inventory.Handler
 		 * 	item currently in that position and return it
 		 * 
 		 **/
-		public DraggableItem ItemDropped(UnityEngine.Event e, DraggableItem item) {
+		public DraggableItem ItemDropped(DraggableItem item) {
 			GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
 			inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
-			e.Use();
 			return tmpInventoryItem.GetComponent<InventoryItem>();
 		}
 
 		/**
 		 * 	Start a drag and use up this event
 		 **/
-		private DraggableItem StartDrag(UnityEngine.Event e) {
+		private DraggableItem StartDrag() {
 			inventory[inventoryPosition.x, inventoryPosition.y] = null;
-			e.Use();
 			return item;
 		}
 	}

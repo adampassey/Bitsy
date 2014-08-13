@@ -36,21 +36,23 @@ namespace AdamPassey.UserInterface.Element
 
 				//	if a drag is initiated, notify the handler
 				if (UnityEngine.Event.current.type == EventType.MouseDrag && draggedItem.item == null) {
-					item = handler.Drag(UnityEngine.Event.current);
+					item = handler.Drag();
+					UnityEngine.Event.current.Use();
 				}
 
 				//	if a mouse up event happens, notify the handler
 				//	whether or not there is an item being dragged
 				if (UnityEngine.Event.current.type == EventType.MouseUp) {
 					if (draggedItem.item == null) {
-						item = handler.Click(UnityEngine.Event.current);
+						item = handler.Click();
 					} else {
 						//	remove the dragged item if the handler returns true
-						item = handler.ItemDropped(UnityEngine.Event.current, draggedItem.item);
+						item = handler.ItemDropped(draggedItem.item);
 						if (item != null) {
 							draggedItem.item = item;
 						}
 					}
+					UnityEngine.Event.current.Use();
 				}
 				if (item != null) {
 					draggedItem.item = item;

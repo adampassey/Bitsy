@@ -30,8 +30,8 @@ namespace AdamPassey.Equipment.Handler
 		/**
 		 * 	If we're not currently dragging, start a drag
 		 **/
-		public DraggableItem Drag(UnityEngine.Event e) {
-			return StartDrag(e);
+		public DraggableItem Drag() {
+			return StartDrag();
 		}
 		
 		/**
@@ -39,8 +39,8 @@ namespace AdamPassey.Equipment.Handler
 		 * 	start a drag
 		 * 
 		 **/
-		public DraggableItem Click(UnityEngine.Event e) {
-			return StartDrag(e);
+		public DraggableItem Click() {
+			return StartDrag();
 		}
 
 		/**
@@ -51,22 +51,20 @@ namespace AdamPassey.Equipment.Handler
 		 *	Otherwise, return null
 		 *
 		 **/
-		public DraggableItem ItemDropped(UnityEngine.Event e, DraggableItem item) {
+		public DraggableItem ItemDropped(DraggableItem item) {
 			EquipmentItem equipmentItem = item.GetComponent<EquipmentItem>();
 			if (equipmentItem != null && equipmentItem.equipmentType == equipmentType) {
 				EquipmentItem tmpEquipmentItem = equipment.Unequip(equipmentType);
 				equipment.Equip(equipmentType, item.GetComponent<EquipmentItem>());
 				return tmpEquipmentItem;
 			}
-			e.Use();
 			return null;
 		}
 		
 		/**
 		 * 	Start a drag and use up this event
 		 **/
-		private DraggableItem StartDrag(UnityEngine.Event e) {
-			e.Use();
+		private DraggableItem StartDrag() {
 			return equipment.Unequip(equipmentType);
 		}
 	}

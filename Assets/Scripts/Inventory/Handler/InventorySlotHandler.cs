@@ -30,13 +30,11 @@ namespace AdamPassey.Inventory.Handler
 
 		/**
 		 * 	On MouseUp, we check to see if there's currently an item
-		 * 	being dragged. If there is, we drop it into this slot and
-		 * 	use the event.
+		 * 	being dragged. If there is, we drop it into this slot.
 		 * 
 		 **/
-		public bool ItemDropped(UnityEngine.Event e, DraggableItem item) {
+		public bool ItemDropped(DraggableItem item) {
 			inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
-			e.Use();
 			return true;
 		}
 	}
