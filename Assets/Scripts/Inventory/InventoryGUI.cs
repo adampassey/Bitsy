@@ -17,7 +17,7 @@ namespace AdamPassey.Inventory
 		private GameObject[,] inventory;
 		private DraggedItem draggedItem;
 
-		public void Awake() {
+		public void Start() {
 			draggedItem = DraggedItem.GetInstance();
 		}
 

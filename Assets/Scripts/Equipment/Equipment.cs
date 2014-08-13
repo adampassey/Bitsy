@@ -21,9 +21,8 @@ namespace AdamPassey.Equipment
 			equipment = new Dictionary<EquipmentType, GameObject>();
 			equipmentContainer = GameObjectFactory.NewGameObject("Equipment", gameObject.transform);
 			equipmentGUIContainer = GameObjectFactory.NewGameObject("Equipment GUI", gameObject.transform);
-			equipmentGUI = equipmentGUIContainer.AddComponent<EquipmentGUI>();
 
-			equipmentGUI.equipment = this;
+			equipmentGUI = EquipmentGUI.CreateComponent(equipmentGUIContainer, this);
 		}
 
 		/**
