@@ -11,6 +11,7 @@ namespace AdamPassey.ActionBar
 		public Vector2 offset;
 		public int tilesize = 50;
 
+		private GameObject actor;
 		private ActionBarController controller;
 		private ActionItem[] items;
 		private GameObject actionBarGUIContainer;
@@ -33,7 +34,7 @@ namespace AdamPassey.ActionBar
 		 **/
 		public void ActivateSlot(int slot) {
 			if (items[slot] != null) {
-				items[slot].Use();
+				items[slot].Use(gameObject);
 			}
 		}
 	}

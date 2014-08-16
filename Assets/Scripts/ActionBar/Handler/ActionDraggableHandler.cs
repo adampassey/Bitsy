@@ -13,13 +13,15 @@ namespace AdamPassey.ActionBar
 		private ActionItem[] items;
 		private ActionItem item;
 		private int position;
+		private ActionBar actionBar;
 
-		public ActionDraggableHandler(GameObject window, ActionItem[] items, int position)
+		public ActionDraggableHandler(GameObject window, ActionItem[] items, int position, ActionBar actionBar)
 		{
 			this.window = window;
 			this.items = items;
 			this.position = position;
 			this.item = items[position];
+			this.actionBar = actionBar;
 		}
 
 		public void Hover() {
@@ -46,7 +48,7 @@ namespace AdamPassey.ActionBar
 		 **/
 		public DraggableItem Click() {
 			//	TODO: add consume on use
-			item.Use();
+			actionBar.ActivateSlot(position);
 			return null;
 		}
 
