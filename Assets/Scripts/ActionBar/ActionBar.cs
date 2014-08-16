@@ -11,6 +11,7 @@ namespace AdamPassey.ActionBar
 		public Vector2 offset;
 		public int tilesize = 50;
 
+		private ActionBarController controller;
 		private ActionItem[] items;
 		private GameObject actionBarGUIContainer;
 		private ActionBarGUI actionBarGUI;
@@ -20,6 +21,8 @@ namespace AdamPassey.ActionBar
 
 			actionBarGUIContainer = GameObjectFactory.NewGameObject("Action Bar GUI Container", gameObject.transform);
 			actionBarGUI = ActionBarGUI.CreateComponent(actionBarGUIContainer, this, items, offset, tilesize);
+
+			controller = ActionBarController.CreateComponent(gameObject, this);
 		}
 	
 		/**
