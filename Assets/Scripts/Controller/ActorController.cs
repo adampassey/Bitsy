@@ -3,6 +3,7 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 using AdamPassey.Equipment;
+using AdamPassey.ActionBar;
 using AdamPassey.GameState;
 using AdamPassey.UserInterface;
 using AdamPassey.Animation;
@@ -19,6 +20,7 @@ public class ActorController : MonoBehaviour
 	private Equipment equipment;
 	private Popup popup;
 	private AnimationSync animationSync;
+	private ActionBar actionBar;
 
 	// Use this for initialization
 	void Start() {
@@ -26,6 +28,7 @@ public class ActorController : MonoBehaviour
 		rigidbody = gameObject.GetComponent<Rigidbody2D>();
 		inventory = gameObject.GetComponent<Inventory>();
 		equipment = gameObject.GetComponent<Equipment>();
+		actionBar = gameObject.GetComponent<ActionBar>();
 		animationSync = gameObject.GetComponent<AnimationSync>();
 
 		//	equipment requires an animation sync

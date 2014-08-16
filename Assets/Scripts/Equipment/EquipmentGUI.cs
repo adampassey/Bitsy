@@ -18,6 +18,19 @@ namespace AdamPassey.Equipment
 			draggedItem = DraggedItem.GetInstance();
 		}
 
+		/**
+		 * 	Factory for an EquipmentGUI
+		 * 
+		 * 	@param GameObject parent The parent GameObject to attach
+		 * 		this component to
+		 * 	@param Equipment equipment The Equipment object
+		 **/
+		public static EquipmentGUI CreateComponent(GameObject parent, Equipment equipment) {
+			EquipmentGUI equipmentGUI = parent.AddComponent<EquipmentGUI>();
+			equipmentGUI.equipment = equipment;
+			return equipmentGUI;
+		}
+
 		public void OnGUI() {
 			//	using the Instance ID as the window ID
 			windowRect = GUI.Window(gameObject.GetInstanceID(), windowRect, OnEquipmentWindow, "");

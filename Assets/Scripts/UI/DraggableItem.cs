@@ -9,12 +9,6 @@ namespace AdamPassey.UserInterface
 		public string name;
 		public string description;
 
-		private DraggedItem draggedItem;
-
-		public void Start() {
-			draggedItem = DraggedItem.GetInstance();
-		}
-
 		/**
 		 * 	The GUI Content to display in UI
 		 **/
@@ -35,7 +29,7 @@ namespace AdamPassey.UserInterface
 			gameObject.transform.position = pos;
 			gameObject.SetActive(true);
 			gameObject.transform.parent = null;
-			draggedItem.item = null;
+			DraggedItem.GetInstance().item = null;
 		}
 	}
 }

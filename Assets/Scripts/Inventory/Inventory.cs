@@ -21,14 +21,7 @@ namespace AdamPassey.Inventory
 		public void Start() {
 			inventory = new GameObject[(int)inventorySize.x, (int)inventorySize.y];
 			parent = GameObjectFactory.NewGameObject(parentName, gameObject.transform);
-
-			//	TODO: this smells. clean up.
-			inventoryGUI = parent.AddComponent<InventoryGUI>();
-			inventoryGUI.SetInventoryEventHandler(this);
-			inventoryGUI.itemOffset = itemOffset;
-			inventoryGUI.tilesize = tilesize;
-			inventoryGUI.windowRect = guiSize;
-			inventoryGUI.Hide();
+			inventoryGUI = InventoryGUI.CreateComponent(parent, this, itemOffset, tilesize, guiSize);
 		}
 
 		/**

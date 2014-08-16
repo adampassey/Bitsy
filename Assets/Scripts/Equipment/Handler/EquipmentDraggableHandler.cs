@@ -9,7 +9,6 @@ namespace AdamPassey.Equipment.Handler
 	public class EquipmentDraggableHandler : DraggableHandler
 	{
 		private GameObject window;
-		private DraggedItem draggedItem;
 		private EquipmentType equipmentType;
 		private Equipment equipment;
 
@@ -18,42 +17,55 @@ namespace AdamPassey.Equipment.Handler
 			this.window = window;
 			this.equipmentType = equipmentType;
 			this.equipment = equipment;
-			draggedItem = DraggedItem.GetInstance();
+		}
+
+		public void Hover() {
+			
+		}
+
+		public void Hover(DraggableItem item) {
+			GUI.FocusWindow(window.GetInstanceID());
 		}
 
 		/**
 		 * 	If we're not currently dragging, start a drag
 		 **/
-		public void MouseDrag(UnityEngine.Event e) {
-			if (draggedItem.item == null) {
-				StartDrag(e);
-			}
+		public DraggableItem Drag() {
+			return StartDrag();
 		}
 		
 		/**
 		 * 	A MouseUp event means the element was clicked
-		 * 	OR a drag was released. If something is being dragged
-		 * 	swap it with this item.
-		 * 	Otherwise, start a drag.
+		 * 	start a drag
 		 * 
 		 **/
-		public void MouseUp(UnityEngine.Event e) {
-			if (draggedItem.item != null && draggedItem.item.GetComponent<EquipmentItem>().equipmentType == equipmentType) {
+		public DraggableItem Click() {
+			return StartDrag();
+		}
+
+		/**
+		 *	If an item is dropped on this slot, check if it is an EquipmentItem
+		 *	AND it is the proper EquipmentType
+		 *	if so, equip it and return the previously equipped item (to be dragged)
+		 *
+		 *	Otherwise, return null
+		 *
+		 **/
+		public DraggableItem ItemDropped(DraggableItem item) {
+			EquipmentItem equipmentItem = item.GetComponent<EquipmentItem>();
+			if (equipmentItem != null && equipmentItem.equipmentType == equipmentType) {
 				EquipmentItem tmpEquipmentItem = equipment.Unequip(equipmentType);
-				equipment.Equip(equipmentType, draggedItem.item.GetComponent<EquipmentItem>());
-				draggedItem.item = tmpEquipmentItem;
-				e.Use();
-			} else {
-				StartDrag(e);
+				equipment.Equip(equipmentType, item.GetComponent<EquipmentItem>());
+				return tmpEquipmentItem;
 			}
+			return null;
 		}
 		
 		/**
 		 * 	Start a drag and use up this event
 		 **/
-		private void StartDrag(UnityEngine.Event e) {
-			draggedItem.item = equipment.Unequip(equipmentType);
-			e.Use();
+		private DraggableItem StartDrag() {
+			return equipment.Unequip(equipmentType);
 		}
 	}
 }

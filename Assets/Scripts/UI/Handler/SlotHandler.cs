@@ -11,7 +11,8 @@ namespace AdamPassey.UserInterface.Handler
 	{
 		void Hover();
 
-		void MouseUp(UnityEngine.Event e);
+		//	return a DraggableItem to consume the draggable item
+		bool ItemDropped(DraggableItem item);
 
 	}
 }
