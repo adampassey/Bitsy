@@ -29,7 +29,11 @@ namespace AdamPassey.UserInterface
 		 * 		and hover events
 		 **/
 		public static void Slot(Rect position, GUIStyle guiStyle, SlotHandler handler) {
-			Element.Slot.Render(position, guiStyle, handler);
+			Element.Slot.Render(position, guiStyle, handler, new GUIContent());
+		}
+
+		public static void Slot(Rect position, GUIStyle guiStyle, SlotHandler handler, GUIContent guiContent) {
+			Element.Slot.Render(position, guiStyle, handler, guiContent);
 		}
 		
 	}

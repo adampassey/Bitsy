@@ -17,10 +17,10 @@ namespace AdamPassey.UserInterface.Element
 		/**
 		 * 	Draw an open inventory slot
 		 **/
-		public static void Render(Rect position, GUIStyle guiStyle, SlotHandler handler) {
+		public static void Render(Rect position, GUIStyle guiStyle, SlotHandler handler, GUIContent guiContent) {
 			//	create the rendering rect to serve as the rendering position 
 			//	and the event-receiving area
-			GUI.Box(position, "", guiStyle);
+			GUI.Box(position, guiContent, guiStyle);
 			
 			//	if the mouse is over this element
 			if (position.Contains(UnityEngine.Event.current.mousePosition)) {
