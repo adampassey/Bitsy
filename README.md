@@ -58,11 +58,29 @@ All items that can be rendered in the `Inventory` should have an `InventoryItem`
 attached. This component defines the image that will be rendered, the name (for tooltips), and
 description.
 
-By default the `Inventory` allows for left-click drag-and-drop functionality. Right-clicking
-an item in the inventory will drop it. Items can also be clicked by dropping them anywhere outside
-of the inventory window. Transferring items between different inventory windows is also supported.
+By default the `Inventory` allows for left-click drag-and-drop functionality. Items can also be dropped
+by dragging and dropping them outside the inventory window.Transferring items between different inventory 
+windows is also supported.
 
 ---
+
+**Equipment**
+
+The `Equipment` pacakge goes hand-in-hand with the `Inventory` pacakge. Currently the `EquipmentGUI` only exposes
+slots for `head` and `chest`, but this can obe overridden in [EquipmentGUI](https://github.com/adampassey/bitsy/blob/master/Assets/Scripts/Equipment/EquipmentGUI.cs). 
+
+To use the `Equipment` package, create items that extend `EquipmentItem`. These items inherit from `InventoryItem`
+and can be placed in inventory, as well as equipped. If these items need to perform a special task on equip or unequip,
+override the methods `void Equip()` and `void Unequip()`. 
+
+**Action Bar**
+
+The `ActionBar` package allows users to drop `ActionItems` into a series of slots and activate them with either
+a keypress or click. To create items that can be dragged into the `ActionBar`, merely create an item that extends 
+`ActionItem`. This will allow the item to be placed in inventory, and placed in any `ActionBar` slot. Override the
+`ActionItem`'s `void Use()` method to perform a specific action when used.
+
+***Currently does not support consumption on use.***
 
 **Persistence**
 
