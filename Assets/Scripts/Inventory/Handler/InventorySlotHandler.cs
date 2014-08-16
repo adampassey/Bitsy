@@ -34,8 +34,11 @@ namespace AdamPassey.Inventory.Handler
 		 * 
 		 **/
 		public bool ItemDropped(DraggableItem item) {
-			inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
-			return true;
+			if (item.GetComponent<InventoryItem>() != null) {
+				inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
+				return true;
+			}
+			return false;
 		}
 	}
 }

@@ -52,9 +52,12 @@ namespace AdamPassey.Inventory.Handler
 		 * 
 		 **/
 		public DraggableItem ItemDropped(DraggableItem item) {
-			GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
-			inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
-			return tmpInventoryItem.GetComponent<InventoryItem>();
+			if (item.GetComponent<InventoryItem>() != null) {
+				GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
+				inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
+				return tmpInventoryItem.GetComponent<InventoryItem>();
+			}
+			return null;
 		}
 
 		/**

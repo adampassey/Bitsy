@@ -36,9 +36,8 @@ namespace AdamPassey.Equipment.Handler
 		 * 
 		 **/
 		public bool ItemDropped(DraggableItem item) {
-			GameObject ob = item.gameObject;
-			EquipmentItem equipmentItem = ob.GetComponent<EquipmentItem>();
-			if (item != null && equipmentItem.equipmentType == equipmentType) {
+			EquipmentItem equipmentItem = item.GetComponent<EquipmentItem>();
+			if (equipmentItem != null && equipmentItem.equipmentType == equipmentType) {
 				if (equipment.IsSlotFree(equipmentType)) {
 					equipment.Equip(equipmentType, equipmentItem);
 					return true;
