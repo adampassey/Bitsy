@@ -73,6 +73,8 @@ To use the `Equipment` package, create items that extend `EquipmentItem`. These 
 and can be placed in inventory, as well as equipped. If these items need to perform a special task on equip or unequip,
 override the methods `void Equip()` and `void Unequip()`. 
 
+---
+
 **Action Bar**
 
 The `ActionBar` package allows users to drop `ActionItems` into a series of slots and activate them with either
@@ -81,6 +83,8 @@ a keypress or click. To create items that can be dragged into the `ActionBar`, m
 `ActionItem`'s `void Use()` method to perform a specific action when used.
 
 ***Currently does not support consumption on use.***
+
+---
 
 **Persistence**
 
