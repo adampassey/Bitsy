@@ -34,7 +34,7 @@ namespace AdamPassey.ActionBar
 		public void OnActionBarGUI(int windowId) {
 			for (int i = 0; i < items.Length; i++) {
 				if (items[i] != null) {
-					ActionDraggableHandler handler = new ActionDraggableHandler(this.gameObject, items, i);
+					ActionDraggableHandler handler = new ActionDraggableHandler(this.gameObject, items, i, actionBar);
 					UI.Draggable(new Rect((i * (float)tilesize) - tilesize, 0, tilesize, tilesize), items[i].GetGUIContent(), new GUIStyle("button"), handler);
 				} else {
 					ActionSlotHandler handler = new ActionSlotHandler(this.gameObject, items, i);
