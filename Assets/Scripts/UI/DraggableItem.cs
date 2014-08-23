@@ -6,7 +6,7 @@ namespace AdamPassey.UserInterface
 	public class DraggableItem : MonoBehaviour
 	{
 		public Texture2D texture;
-		public string name;
+		public string itemName;
 		public string description;
 
 		/**
@@ -14,7 +14,7 @@ namespace AdamPassey.UserInterface
 		 **/
 		public virtual GUIContent GetGUIContent() {
 			GUIContent guiContent = new GUIContent();
-			guiContent.tooltip = name;
+			guiContent.tooltip = itemName;
 			guiContent.image = texture;
 			
 			return guiContent;

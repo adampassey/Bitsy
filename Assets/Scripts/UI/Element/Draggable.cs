@@ -35,7 +35,7 @@ namespace AdamPassey.UserInterface.Element
 				DraggableItem item = null;
 
 				//	if a drag is initiated, notify the handler
-				if (UnityEngine.Event.current.type == EventType.MouseDrag && draggedItem.item == null) {
+				if (UnityEngine.Event.current.type == EventType.MouseDown && draggedItem.item == null) {
 					item = handler.Drag();
 					UnityEngine.Event.current.Use();
 				}

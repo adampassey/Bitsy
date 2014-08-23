@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#pragma warning disable 0414
+
+using UnityEngine;
 using System.Collections.Generic;
 
 using AdamPassey.UserInterface;
@@ -13,7 +15,6 @@ namespace AdamPassey.Inventory
 		public int tilesize;
 		public Rect windowRect = new Rect(50, 50, 220, 200);
 
-		private Inventory parentInventory;
 		private GameObject[,] inventory;
 		private DraggedItem draggedItem;
 
@@ -36,7 +37,6 @@ namespace AdamPassey.Inventory
 		public static InventoryGUI CreateComponent(GameObject parent, Inventory inventory, Vector2 itemOffset, int tilesize, Rect windowSize) {
 			InventoryGUI inventoryGUI = parent.AddComponent<InventoryGUI>();
 
-			inventoryGUI.parentInventory = inventory;
 			inventoryGUI.itemOffset = itemOffset;
 			inventoryGUI.tilesize = tilesize;
 			inventoryGUI.windowRect = windowSize;
@@ -95,7 +95,6 @@ namespace AdamPassey.Inventory
 
 		/**
 		 *	Show the inventory
-		 *	@param parentInventory The inventory
 		 **/
 		public void Show() {
 			gameObject.SetActive(true);

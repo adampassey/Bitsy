@@ -59,7 +59,6 @@ namespace AdamPassey.ActionBar
 		 **/
 		public DraggableItem ItemDropped(DraggableItem item) {
 			if (item.GetComponent<ActionItem>() != null) {
-				GameObject tmp = item.gameObject;
 				items[position] = item.GetComponent<ActionItem>();
 				return item.GetComponent<ActionItem>();
 			}

@@ -68,7 +68,6 @@ namespace AdamPassey.Equipment
 		 **/
 		public EquipmentItem Item(EquipmentType type) {
 			if (equipment.ContainsKey(type)) {
-				EquipmentItem item = equipment[type].GetComponent<EquipmentItem>();
 				return equipment[type].GetComponent<EquipmentItem>();
 			}
 			return null;
