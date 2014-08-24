@@ -49,14 +49,15 @@ namespace AdamPassey.Inventory.Handler {
 
 				//	if this is a stackable item, stack it
 				if (stackableItem != null && stackableSelf != null) {
-					return stackableSelf.AddStackableInventoryItems(stackableItem);
-				
-				} else {
-					//	otherwise, swap it
-					GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
-					inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
-					return tmpInventoryItem.GetComponent<InventoryItem>();
+					if (!stackableSelf.IsMaxed()) {
+						return stackableSelf.AddStackableInventoryItems(stackableItem);
+					}
 				}
+
+				//	otherwise, swap it
+				GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
+				inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
+				return tmpInventoryItem.GetComponent<InventoryItem>();
 			}
 			return null;
 		}

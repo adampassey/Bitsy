@@ -70,6 +70,14 @@ namespace AdamPassey.Inventory {
 		}
 
 		/**
+		 * 	Is this stack at max?
+		 * 
+		 **/
+		public bool IsMaxed() {
+			return count == maxCount;
+		}
+
+		/**
 		 * 	Specifically set the count of items in
 		 * 	this stack
 		 * 	
