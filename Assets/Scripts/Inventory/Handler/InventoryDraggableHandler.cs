@@ -37,14 +37,26 @@ namespace AdamPassey.Inventory.Handler {
 
 		/**
 		 * 	An item was dropped on this slot. Swap it with the 
-		 * 	item currently in that position and return it
+		 * 	item currently in that position and return it or
+		 * 	stack it if it's a stackable item
 		 * 
 		 **/
 		public override DraggableItem ItemDropped(DraggableItem item) {
 			if (item.GetComponent<InventoryItem>() != null) {
-				GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
-				inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
-				return tmpInventoryItem.GetComponent<InventoryItem>();
+
+				StackableInventoryItem stackableItem = item.GetComponent<StackableInventoryItem>();
+				StackableInventoryItem stackableSelf = this.item.GetComponent<StackableInventoryItem>();
+
+				//	if this is a stackable item, stack it
+				if (stackableItem != null && stackableSelf != null) {
+					return stackableSelf.AddStackableInventoryItems(stackableItem);
+				
+				} else {
+					//	otherwise, swap it
+					GameObject tmpInventoryItem = inventory[inventoryPosition.x, inventoryPosition.y];
+					inventory[inventoryPosition.x, inventoryPosition.y] = item.gameObject;
+					return tmpInventoryItem.GetComponent<InventoryItem>();
+				}
 			}
 			return null;
 		}

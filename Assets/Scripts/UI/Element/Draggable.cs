@@ -49,6 +49,8 @@ namespace AdamPassey.UserInterface.Element {
 						item = handler.ItemDropped(draggedItem.item);
 						if (item != null) {
 							draggedItem.item = item;
+						} else {
+							draggedItem.item = null;
 						}
 					}
 					UnityEngine.Event.current.Use();
