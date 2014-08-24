@@ -82,8 +82,6 @@ a keypress or click. To create items that can be dragged into the `ActionBar`, m
 `ActionItem`. This will allow the item to be placed in inventory, and placed in any `ActionBar` slot. Override the
 `ActionItem`'s `void Use()` method to perform a specific action when used.
 
-***Currently does not support consumption on use.***
-
 ---
 
 **Persistence**
