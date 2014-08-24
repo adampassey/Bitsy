@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace AdamPassey.Inventory {
 
@@ -7,7 +8,7 @@ namespace AdamPassey.Inventory {
 	public class StackableInventoryItem : InventoryItem {
 
 		public int maxCount = 25;
-		private int count = 1;
+		public int count = 1;
 
 		/**
 		 * 	Will display the number of items in this stack
@@ -37,8 +38,16 @@ namespace AdamPassey.Inventory {
 			//	iterating through transforms as 
 			//	`GetComponentsInChildren` does return the
 			//	top level component, which we don't want
+			//	so we'll create a transform list so we can
+			//	mutate the transforms in items.transform
+			//	and not break the loop
 
+			List<Transform> tmpTransforms = new List<Transform>();
 			foreach (Transform t in items.transform) {
+				tmpTransforms.Add(t);
+			}
+
+			foreach (Transform t in tmpTransforms) {
 				StackableInventoryItem child = t.GetComponent<StackableInventoryItem>();
 				AddStackableInventoryItem(child);
 				items.DecrementCount();
@@ -67,13 +76,8 @@ namespace AdamPassey.Inventory {
 		 * 	@param int count The count
 		 * 
 		 **/
-		public int SetCount(int count) {
-			if (this.count + count > maxCount) {
-				this.count = maxCount;
-				return maxCount - count;
-			}
-			this.count += count;
-			return 0;
+		public void SetCount(int count) {
+			this.count = Mathf.Clamp(count, 1, maxCount);
 		}
 
 		/**
@@ -107,6 +111,8 @@ namespace AdamPassey.Inventory {
 				child.position = pos;
 				child.gameObject.SetActive(true);
 				child.parent = null;
+
+				child.GetComponent<StackableInventoryItem>().SetCount(1);
 			}
 			return true;
 		}
