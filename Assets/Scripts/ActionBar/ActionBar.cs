@@ -1,6 +1,4 @@
-﻿#pragma warning disable 0414
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 using AdamPassey.GameObjectHelper;
@@ -14,18 +12,16 @@ namespace AdamPassey.ActionBar {
 		public int tilesize = 50;
 
 		private GameObject actor;
-		private ActionBarController controller;
 		private ActionItem[] items;
 		private GameObject actionBarGUIContainer;
-		private ActionBarGUI actionBarGUI;
 
 		public void Start() {
 			items = new ActionItem[maxItems];
 
 			actionBarGUIContainer = GameObjectFactory.NewGameObject("Action Bar GUI Container", gameObject.transform);
-			actionBarGUI = ActionBarGUI.CreateComponent(actionBarGUIContainer, this, items, offset, tilesize);
+			ActionBarGUI.CreateComponent(actionBarGUIContainer, this, items, offset, tilesize);
 
-			controller = ActionBarController.CreateComponent(gameObject, this);
+			ActionBarController.CreateComponent(gameObject, this);
 		}
 	
 		/**

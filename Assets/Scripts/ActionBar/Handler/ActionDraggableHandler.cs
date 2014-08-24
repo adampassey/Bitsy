@@ -26,7 +26,7 @@ namespace AdamPassey.ActionBar.Handler {
 		 * 
 		 **/
 		public override DraggableItem Drag() {
-			ActionItem tmp = item.GetComponent<ActionItem>();
+			DraggableItem tmp = item.GetComponent<DraggableItem>();
 			items[position] = null;
 			return tmp;
 		}
@@ -47,7 +47,7 @@ namespace AdamPassey.ActionBar.Handler {
 		public override DraggableItem ItemDropped(DraggableItem item) {
 			if (item.GetComponent<ActionItem>() != null) {
 				items[position] = item.GetComponent<ActionItem>();
-				return item.GetComponent<ActionItem>();
+				return this.item.GetComponent<DraggableItem>();
 			}
 			return null;
 		}

@@ -5,7 +5,7 @@ using AdamPassey.Inventory;
 
 namespace AdamPassey.ActionBar {
 
-	public class ActionItem : InventoryItem {
+	public class ActionItem : MonoBehaviour {
 
 		public bool destroyOnUse = false;
 
