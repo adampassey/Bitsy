@@ -23,13 +23,11 @@ namespace AdamPassey.UserInterface {
 		/**
 		 * 	Drop this item
 		 **/
-		public virtual void Drop() {
-			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			pos.z = 0;
+		public virtual bool Drop(Vector2 pos) {
 			gameObject.transform.position = pos;
 			gameObject.SetActive(true);
 			gameObject.transform.parent = null;
-			DraggedItem.GetInstance().item = null;
+			return true;
 		}
 	}
 }

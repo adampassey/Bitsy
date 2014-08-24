@@ -30,7 +30,7 @@ namespace AdamPassey.Inventory {
 		 * 
 		 **/
 		public StackableInventoryItem AddStackableInventoryItems(StackableInventoryItem items) {
-			if (count >= maxCount) {
+			if (count >= maxCount || items.itemName != this.itemName) {
 				return items;
 			}
 
@@ -95,6 +95,20 @@ namespace AdamPassey.Inventory {
 			if (count > 1) {
 				count --;
 			}
+		}
+
+		/**
+		 * 	Drop this item and all children
+		 * 
+		 **/
+		public override bool Drop(Vector2 pos) {
+			Transform[] children = GetComponentsInChildren<Transform>(true);
+			foreach (Transform child in children) {
+				child.position = pos;
+				child.gameObject.SetActive(true);
+				child.parent = null;
+			}
+			return true;
 		}
 
 		private void AddStackableInventoryItem(StackableInventoryItem item) {
