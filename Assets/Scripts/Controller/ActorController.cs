@@ -8,8 +8,7 @@ using AdamPassey.GameState;
 using AdamPassey.UserInterface;
 using AdamPassey.Animation;
 
-public class ActorController : MonoBehaviour
-{
+public class ActorController : MonoBehaviour {
 
 	public float speed = 5f;
 	public GameObject collidedInventoryItem;

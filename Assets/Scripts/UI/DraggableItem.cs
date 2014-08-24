@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.UserInterface
-{
-	public class DraggableItem : MonoBehaviour
-	{
+namespace AdamPassey.UserInterface {
+
+	public class DraggableItem : MonoBehaviour {
+
 		public Texture2D texture;
 		public string itemName;
 		public string description;

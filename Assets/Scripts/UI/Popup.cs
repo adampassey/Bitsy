@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.UserInterface
-{
-	public class Popup : MonoBehaviour
-	{
+namespace AdamPassey.UserInterface {
+
+	public class Popup : MonoBehaviour {
+
 		public string content;
 		public Vector2 objectPosition;
 		public Vector2 popupOffset;

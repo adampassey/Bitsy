@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace AdamPassey.Event
-{
-	public static class Events
-	{
+namespace AdamPassey.Event {
+
+	public static class Events {
+
 		public static Dictionary<string, Action<EventContext>> listeners;
 
 		/**
 		 * Static constructor
 		 * Instantiate a dictionary to hold listeners
 		 **/
-		static Events()
-		{
+		static Events() {
 			listeners = new Dictionary<string, Action<EventContext>>();
 		}
 

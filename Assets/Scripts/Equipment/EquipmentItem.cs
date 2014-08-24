@@ -3,10 +3,10 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 
-namespace AdamPassey.Equipment
-{
-	public class EquipmentItem : InventoryItem
-	{
+namespace AdamPassey.Equipment {
+
+	public class EquipmentItem : InventoryItem {
+
 		public EquipmentType equipmentType;
 		public bool defaultRenderingLayer = true;
 

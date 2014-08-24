@@ -3,8 +3,8 @@ using System.Collections;
 
 using AdamPassey.Timer;
 
-public class TimerUsage : MonoBehaviour
-{
+public class TimerUsage : MonoBehaviour {
+
 	private Timer timer;
 
 	void Start() {

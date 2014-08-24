@@ -5,10 +5,10 @@ using AdamPassey.Inventory;
 using AdamPassey.UserInterface.Element;
 using AdamPassey.UserInterface.Handler;
 
-namespace AdamPassey.UserInterface
-{
-	public static class UI
-	{
+namespace AdamPassey.UserInterface {
+
+	public static class UI {
+
 		/**
 		 *	Draw a UI Draggable Element
 		 *	@param Rect position The position to render the element

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace AdamPassey.WorldMap
-{
-	public class LevelNode : MonoBehaviour
-	{
+namespace AdamPassey.WorldMap {
+
+	public class LevelNode : MonoBehaviour {
 
 		public List<Level> levels = new List<Level>();
 		public List<Direction> directions = new List<Direction>();

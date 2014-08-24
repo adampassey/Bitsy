@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using AdamPassey.GameObjectHelper;
 using AdamPassey.Animation;
 
-namespace AdamPassey.Equipment
-{
+namespace AdamPassey.Equipment {
+
 	[AddComponentMenu("Gameplay/Equipment")]
-	public class Equipment : MonoBehaviour
-	{
+	public class Equipment : MonoBehaviour {
+
 		public AnimationSync animationSync;
 
 		private Dictionary<EquipmentType, GameObject> equipment;

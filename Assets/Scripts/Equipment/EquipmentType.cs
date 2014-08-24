@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Equipment
-{
+namespace AdamPassey.Equipment {
+
 	/**
 	 * 	The different types of equipment.
 	 * 	Also determines the rendering layer.
@@ -10,8 +10,7 @@ namespace AdamPassey.Equipment
 	 * 	list render at the very back.
 	 * 
 	 **/
-	public enum EquipmentType
-	{
+	public enum EquipmentType {
 		Back,
 		Chest,
 		Head,

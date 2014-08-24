@@ -4,10 +4,10 @@ using System.Collections;
 using AdamPassey.UserInterface;
 using AdamPassey.Equipment.Handler;
 
-namespace AdamPassey.Equipment
-{
-	public class EquipmentGUI : MonoBehaviour
-	{
+namespace AdamPassey.Equipment {
+
+	public class EquipmentGUI : MonoBehaviour {
+
 		public Equipment equipment;
 
 		private Rect windowRect = new Rect(10, 10, 70, 170);

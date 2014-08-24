@@ -4,11 +4,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using AdamPassey.Persistence.Container;
 
-namespace  AdamPassey.Persistence
-{
+namespace  AdamPassey.Persistence {
 
-	public class Persister
-	{
+	public class Persister {
 
 		/**
 		 *	Save the Data Container at the given filename location

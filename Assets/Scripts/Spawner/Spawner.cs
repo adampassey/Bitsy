@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Spawner
-{
-	public class Spawner : MonoBehaviour
-	{
+namespace AdamPassey.Spawner {
+
+	public class Spawner : MonoBehaviour {
 
 		public GameObject prefabToSpawn;
 

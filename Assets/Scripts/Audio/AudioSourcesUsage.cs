@@ -1,17 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Audio
-{
-	public class AudioSourcesUsage : MonoBehaviour
-	{
+namespace AdamPassey.Audio {
+
+	public class AudioSourcesUsage : MonoBehaviour {
 
 		private AudioSources audioSources;
 
 		//	for better readability, define
 		//	sounds via enum
-		enum Sounds
-		{
+		enum Sounds {
 			Smack,
 			Hit,
 			Jump

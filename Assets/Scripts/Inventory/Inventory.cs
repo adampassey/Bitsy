@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 using AdamPassey.GameObjectHelper;
 
-namespace AdamPassey.Inventory
-{
+namespace AdamPassey.Inventory {
+
 	[AddComponentMenu("Gameplay/Inventory")]
-	public class Inventory : MonoBehaviour
-	{
+	public class Inventory : MonoBehaviour {
+
 		public Rect guiSize = new Rect(50, 50, 220, 200);
 		public Vector2 inventorySize;
 		public Vector2 itemOffset;

@@ -6,7 +6,9 @@ using System.Collections;
 using AdamPassey.GameObjectHelper;
 
 namespace AdamPassey.ActionBar {
+
 	public class ActionBar : MonoBehaviour {
+
 		public int maxItems = 10;
 		public Vector2 offset;
 		public int tilesize = 50;

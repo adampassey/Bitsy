@@ -3,8 +3,8 @@ using System.Collections;
 
 using AdamPassey.Event;
 
-public class EventUsage : MonoBehaviour
-{
+public class EventUsage : MonoBehaviour {
+
 	//	Start
 	void Start() {
 		//	Use Events.When() to register event handlers

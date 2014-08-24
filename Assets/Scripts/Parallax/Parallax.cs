@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Parallax
-{
+namespace AdamPassey.Parallax {
+
 	[AddComponentMenu("Environment/Parallax")]
-	public class Parallax : MonoBehaviour
-	{
+	public class Parallax : MonoBehaviour {
+
 		public GameObject materialObject;
 		public float speed = 0.1f;
 

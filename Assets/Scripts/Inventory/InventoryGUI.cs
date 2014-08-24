@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using AdamPassey.UserInterface;
 using AdamPassey.Inventory.Handler;
 
-namespace AdamPassey.Inventory
-{
+namespace AdamPassey.Inventory {
+
 	[AddComponentMenu("Gameplay/Inventory GUI")]
-	public class InventoryGUI : MonoBehaviour
-	{
+	public class InventoryGUI : MonoBehaviour {
+
 		public Vector2 itemOffset;
 		public int tilesize;
 		public Rect windowRect = new Rect(50, 50, 220, 200);
