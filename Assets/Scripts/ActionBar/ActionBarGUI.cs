@@ -4,11 +4,12 @@ using UnityEngine;
 using System.Collections;
 
 using AdamPassey.UserInterface;
+using AdamPassey.ActionBar.Handler;
 
-namespace AdamPassey.ActionBar
-{
-	public class ActionBarGUI : MonoBehaviour
-	{
+namespace AdamPassey.ActionBar {
+
+	public class ActionBarGUI : MonoBehaviour {
+
 		private ActionItem[] items;
 		private ActionBar actionBar;
 		private Vector2 offset;

@@ -4,14 +4,13 @@ using System.Collections;
 using AdamPassey.Inventory;
 using AdamPassey.UserInterface.Handler;
 
-namespace AdamPassey.UserInterface.Element
-{
-	public static class Draggable
-	{
+namespace AdamPassey.UserInterface.Element {
+
+	public static class Draggable {
+
 		private static DraggedItem draggedItem;
 
-		static Draggable()
-		{
+		static Draggable() {
 			draggedItem = DraggedItem.GetInstance();
 		}
 		/**
