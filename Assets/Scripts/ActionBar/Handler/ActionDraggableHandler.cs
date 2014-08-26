@@ -3,6 +3,7 @@ using System.Collections;
 
 using AdamPassey.UserInterface;
 using AdamPassey.UserInterface.Handler;
+using AdamPassey.Inventory;
 
 namespace AdamPassey.ActionBar.Handler {
 
@@ -46,8 +47,32 @@ namespace AdamPassey.ActionBar.Handler {
 		 **/
 		public override DraggableItem ItemDropped(DraggableItem item) {
 			if (item.GetComponent<ActionItem>() != null) {
-				items[position] = item.GetComponent<ActionItem>();
-				return this.item.GetComponent<DraggableItem>();
+
+				//	if this is a stackable item, try and stack it
+				//	this works but it's _really_ ugly
+				//	TODO: maybe there should be a helper that will attempt
+				//	this as opposed to implementing it on anything that
+				//	requires stackable items.
+				StackableInventoryItem stackableSelf = this.item.GetComponent<StackableInventoryItem>();
+				StackableInventoryItem stackableItem = item.GetComponent<StackableInventoryItem>();
+				if (stackableSelf != null && stackableItem != null) {
+
+					//	if we're dragging a single item and dropping it on a max stack
+					//	that means we should swap these 
+					//	TODO: check stack types?
+					if (stackableItem.GetCount() == 1 && stackableSelf.GetCount() == stackableSelf.maxCount) {
+						items[position] = item.GetComponent<ActionItem>();
+						return this.item.GetComponent<DraggableItem>();
+					} else {
+						StackableInventoryItem remainder = stackableSelf.AddStackableInventoryItems(stackableItem);
+						if (remainder != null) {
+							return remainder;
+						}
+					}
+				} else {
+					items[position] = item.GetComponent<ActionItem>();
+					return this.item.GetComponent<DraggableItem>();
+				}
 			}
 			return null;
 		}
