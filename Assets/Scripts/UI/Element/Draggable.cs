@@ -3,6 +3,7 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 using AdamPassey.UserInterface.Handler;
+using AdamPassey.Audio;
 
 namespace AdamPassey.UserInterface.Element {
 
@@ -56,6 +57,11 @@ namespace AdamPassey.UserInterface.Element {
 					UnityEngine.Event.current.Use();
 				}
 				if (item != null) {
+					AudioSources audio = item.GetComponent<AudioSources>();
+					if (audio != null) {
+						AudioPlayer audioPlayer = AudioPlayer.GetInstance();
+						audioPlayer.PlayOnce(audio.audioClips[0]);
+					}
 					draggedItem.item = item;
 				}
 			}
