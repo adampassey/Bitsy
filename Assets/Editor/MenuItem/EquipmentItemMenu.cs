@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections;
 
-using Bitsy.Equipment;
+using Bitsy.UserInterface.Inventory.Equipment;
 
 namespace Bitsy.Editor.MenuItems {
 	

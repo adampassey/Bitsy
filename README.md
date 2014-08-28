@@ -20,7 +20,7 @@ size of each tile).
 Once the inventory is attached, it can be opened and closed easily:
 
 ```C#
-using Bitsy.Inventory;
+using Bitsy.UserInterface.Inventory;
 
 public class SomeGameObject {
 	

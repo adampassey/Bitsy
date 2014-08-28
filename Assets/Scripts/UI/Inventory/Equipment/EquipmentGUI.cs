@@ -2,9 +2,9 @@
 using System.Collections;
 
 using Bitsy.UserInterface;
-using Bitsy.Equipment.Handler;
+using Bitsy.UserInterface.Inventory.Equipment.Handler;
 
-namespace Bitsy.Equipment {
+namespace Bitsy.UserInterface.Inventory.Equipment {
 
 	public class EquipmentGUI : MonoBehaviour {
 

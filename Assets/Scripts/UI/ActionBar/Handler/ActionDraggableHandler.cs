@@ -3,9 +3,9 @@ using System.Collections;
 
 using Bitsy.UserInterface;
 using Bitsy.UserInterface.Handler;
-using Bitsy.Inventory;
+using Bitsy.UserInterface.Inventory;
 
-namespace Bitsy.ActionBar.Handler {
+namespace Bitsy.UserInterface.ActionBar.Handler {
 
 	public class ActionDraggableHandler : DefaultDraggableHandler {
 		

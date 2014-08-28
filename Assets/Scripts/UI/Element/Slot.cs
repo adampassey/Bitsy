@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using Bitsy.Inventory;
 using Bitsy.UserInterface.Handler;
 
 namespace Bitsy.UserInterface.Element {

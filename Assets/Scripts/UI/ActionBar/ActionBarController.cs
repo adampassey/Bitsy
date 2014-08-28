@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Bitsy.ActionBar {
+namespace Bitsy.UserInterface.ActionBar {
 
 	public class ActionBarController : MonoBehaviour {
 

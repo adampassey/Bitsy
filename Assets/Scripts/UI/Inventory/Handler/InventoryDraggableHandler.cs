@@ -4,7 +4,7 @@ using System.Collections;
 using Bitsy.UserInterface;
 using Bitsy.UserInterface.Handler;
 
-namespace Bitsy.Inventory.Handler {
+namespace Bitsy.UserInterface.Inventory.Handler {
 
 	public class InventoryDraggableHandler : DefaultDraggableHandler {
 

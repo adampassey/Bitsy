@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Bitsy.GameObjectHelper;
 using Bitsy.Animation;
 
-namespace Bitsy.Equipment {
+namespace Bitsy.UserInterface.Inventory.Equipment {
 
 	[AddComponentMenu("Gameplay/Equipment")]
 	public class Equipment : MonoBehaviour {

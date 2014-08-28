@@ -3,7 +3,7 @@ using System.Collections;
 
 using Bitsy.GameObjectHelper;
 
-namespace Bitsy.ActionBar {
+namespace Bitsy.UserInterface.ActionBar {
 
 	public class ActionBar : MonoBehaviour {
 

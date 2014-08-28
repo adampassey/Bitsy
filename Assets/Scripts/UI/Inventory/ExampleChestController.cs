@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using Bitsy.Inventory;
+using Bitsy.UserInterface.Inventory;
 
 public class ExampleChestController : MonoBehaviour {
 

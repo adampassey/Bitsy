@@ -4,7 +4,7 @@ using System.Collections;
 using Bitsy.UserInterface;
 using Bitsy.UserInterface.Handler;
 
-namespace Bitsy.Equipment.Handler {
+namespace Bitsy.UserInterface.Inventory.Equipment.Handler {
 
 	public class EquipmentSlotHandler : DefaultSlotHandler {
 

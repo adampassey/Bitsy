@@ -3,7 +3,7 @@ using System.Collections;
 
 using Bitsy.UserInterface;
 
-namespace Bitsy.Inventory {
+namespace Bitsy.UserInterface.Inventory {
 
 	/**
 	 * 	All items that can be added to the inventory

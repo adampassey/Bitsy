@@ -4,7 +4,7 @@ using System.Collections;
 using Bitsy.UserInterface;
 using Bitsy.UserInterface.Handler;
 
-namespace Bitsy.ActionBar.Handler {
+namespace Bitsy.UserInterface.ActionBar.Handler {
 
 	public class ActionSlotHandler : DefaultSlotHandler {
 

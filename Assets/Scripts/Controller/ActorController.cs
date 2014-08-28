@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using Bitsy.Inventory;
-using Bitsy.Equipment;
-using Bitsy.ActionBar;
+using Bitsy.UserInterface.Inventory;
+using Bitsy.UserInterface.Inventory.Equipment;
+using Bitsy.UserInterface.ActionBar;
 using Bitsy.GameState;
 using Bitsy.UserInterface;
 using Bitsy.Animation;

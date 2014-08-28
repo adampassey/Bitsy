@@ -4,9 +4,9 @@ using UnityEngine;
 using System.Collections.Generic;
 
 using Bitsy.UserInterface;
-using Bitsy.Inventory.Handler;
+using Bitsy.UserInterface.Inventory.Handler;
 
-namespace Bitsy.Inventory {
+namespace Bitsy.UserInterface.Inventory {
 
 	[AddComponentMenu("Gameplay/Inventory GUI")]
 	public class InventoryGUI : MonoBehaviour {

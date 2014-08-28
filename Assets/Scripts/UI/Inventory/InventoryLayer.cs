@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Bitsy.Inventory {
+namespace Bitsy.UserInterface.Inventory {
 
 	/**
 	 * 	The layers in which to render the inventory

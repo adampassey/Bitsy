@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Bitsy.GameObjectHelper;
 
-namespace Bitsy.Inventory {
+namespace Bitsy.UserInterface.Inventory {
 
 	[AddComponentMenu("Gameplay/Inventory")]
 	public class Inventory : MonoBehaviour {

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using Bitsy.Inventory;
+using Bitsy.UserInterface.Inventory;
 
-namespace Bitsy.ActionBar {
+namespace Bitsy.UserInterface.ActionBar {
 
 	public class ActionItem : MonoBehaviour {
 

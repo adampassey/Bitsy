@@ -4,9 +4,9 @@ using UnityEngine;
 using System.Collections;
 
 using Bitsy.UserInterface;
-using Bitsy.ActionBar.Handler;
+using Bitsy.UserInterface.ActionBar.Handler;
 
-namespace Bitsy.ActionBar {
+namespace Bitsy.UserInterface.ActionBar {
 
 	public class ActionBarGUI : MonoBehaviour {
 

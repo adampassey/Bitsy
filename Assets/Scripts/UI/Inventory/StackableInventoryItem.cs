@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Bitsy.Inventory {
+namespace Bitsy.UserInterface.Inventory {
 
 	[AddComponentMenu("Gameplay/Stackable Inventory Item")]
 	public class StackableInventoryItem : InventoryItem {
