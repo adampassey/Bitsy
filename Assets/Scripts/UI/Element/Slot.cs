@@ -33,11 +33,7 @@ namespace AdamPassey.UserInterface.Element {
 				//	fire the mouse-up event on the handler
 				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
 					if (handler.ItemDropped(draggedItem.item)) {
-						AudioSources audio = draggedItem.item.GetComponent<AudioSources>();
-						if (audio != null) {
-							AudioPlayer audioPlayer = AudioPlayer.GetInstance();
-							audioPlayer.PlayOnce(audio.audioClips[1]);
-						}
+						draggedItem.item.PutDown();
 						draggedItem.item = null;
 					}
 					UnityEngine.Event.current.Use();

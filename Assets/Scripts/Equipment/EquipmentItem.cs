@@ -13,8 +13,9 @@ namespace AdamPassey.Equipment {
 		private int renderingLayer;
 		private SpriteRenderer spriteRenderer;
 
-		public void Start() {
+		public override void Start() {
 			spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+			base.Start();
 		}
 
 		/**
