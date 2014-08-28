@@ -47,7 +47,7 @@ namespace AdamPassey.Equipment.Handler {
 				equipment.Equip(equipmentType, item.GetComponent<EquipmentItem>());
 				return tmpEquipmentItem;
 			}
-			return null;
+			return item;
 		}
 		
 		/**
