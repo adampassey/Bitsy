@@ -14,6 +14,7 @@ namespace AdamPassey.Inventory {
 		public Vector2 itemOffset;
 		public int tilesize;
 		public Rect windowRect = new Rect(50, 50, 220, 200);
+		public Rect draggableArea = new Rect(0, 0, 220, 50);
 
 		private GameObject[,] inventory;
 		private DraggedItem draggedItem;
@@ -34,12 +35,13 @@ namespace AdamPassey.Inventory {
 		 * 	@param Rect windowSize The size of the GUI Window
 		 * 
 		 **/
-		public static InventoryGUI CreateComponent(GameObject parent, Inventory inventory, Vector2 itemOffset, int tilesize, Rect windowSize) {
+		public static InventoryGUI CreateComponent(GameObject parent, Inventory inventory, Vector2 itemOffset, int tilesize, Rect windowSize, Rect draggableArea) {
 			InventoryGUI inventoryGUI = parent.AddComponent<InventoryGUI>();
 
 			inventoryGUI.itemOffset = itemOffset;
 			inventoryGUI.tilesize = tilesize;
 			inventoryGUI.windowRect = windowSize;
+			inventoryGUI.draggableArea = draggableArea;
 			inventoryGUI.Hide();
 
 			return inventoryGUI;
@@ -75,12 +77,12 @@ namespace AdamPassey.Inventory {
 					position.x += tilesize;
 				}
 				position.y += tilesize;
-				position.x = itemOffset.y;
+				position.x = itemOffset.x;
 			}
 			//	if there is no dragged item, 
 			//	this window is draggable
 			if (draggedItem.item == null) {
-				GUI.DragWindow();
+				GUI.DragWindow(draggableArea);
 			}
 		}
 

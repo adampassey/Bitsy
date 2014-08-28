@@ -10,7 +10,7 @@ namespace AdamPassey.Equipment {
 
 		public Equipment equipment;
 
-		private Rect windowRect = new Rect(10, 10, 70, 170);
+		private Rect windowRect = new Rect(10, 10, 70, 200);
 		private EquipmentSlotHandler handler;
 		private DraggedItem draggedItem;
 
@@ -43,27 +43,27 @@ namespace AdamPassey.Equipment {
 			//	head slot
 			if (equipment.IsSlotFree(EquipmentType.Head)) {
 				EquipmentSlotHandler headHandler = new EquipmentSlotHandler(gameObject, EquipmentType.Head, equipment);
-				UI.Slot(new Rect(10, 25, 50, 50), new GUIStyle("button"), headHandler);
+				UI.Slot(new Rect(10, 55, 50, 50), new GUIStyle("button"), headHandler);
 			} else {
 				EquipmentDraggableHandler headHandler = new EquipmentDraggableHandler(gameObject, EquipmentType.Head, equipment);
 				GUIContent guiContent = equipment.Item(EquipmentType.Head).GetGUIContent();
-				UI.Draggable(new Rect(10, 25, 50, 50), guiContent, new GUIStyle("button"), headHandler);
+				UI.Draggable(new Rect(10, 55, 50, 50), guiContent, new GUIStyle("button"), headHandler);
 			}
-			GUI.Label(new Rect(18, 5, 100, 100), "Head");
+			GUI.Label(new Rect(18, 35, 100, 100), "Head");
 
 			//	chest slot
 			if (equipment.IsSlotFree(EquipmentType.Chest)) {
 				EquipmentSlotHandler chestHandler = new EquipmentSlotHandler(gameObject, EquipmentType.Chest, equipment);
-				UI.Slot(new Rect(10, 100, 50, 50), new GUIStyle("button"), chestHandler);
+				UI.Slot(new Rect(10, 130, 50, 50), new GUIStyle("button"), chestHandler);
 			} else {
 				EquipmentDraggableHandler chestHandler = new EquipmentDraggableHandler(gameObject, EquipmentType.Chest, equipment);
 				GUIContent guiContent = equipment.Item(EquipmentType.Chest).GetGUIContent();
-				UI.Draggable(new Rect(10, 100, 50, 50), guiContent, new GUIStyle("button"), chestHandler);
+				UI.Draggable(new Rect(10, 130, 50, 50), guiContent, new GUIStyle("button"), chestHandler);
 			}
-			GUI.Label(new Rect(18, 80, 100, 100), "Chest");
+			GUI.Label(new Rect(18, 110, 100, 100), "Chest");
 
 			if (draggedItem.item == null) {
-				GUI.DragWindow();
+				GUI.DragWindow(new Rect(0, 0, 70, 30));
 			}
 		}
 

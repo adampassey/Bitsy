@@ -9,8 +9,9 @@ namespace AdamPassey.Inventory {
 	public class Inventory : MonoBehaviour {
 
 		public Rect guiSize = new Rect(50, 50, 220, 200);
-		public Vector2 inventorySize;
 		public Vector2 itemOffset;
+		public Rect draggableArea = new Rect(0, 0, 220, 25);
+		public Vector2 inventorySize;
 		public int tilesize;
 		public GameObject[,] inventory;
 
@@ -21,7 +22,7 @@ namespace AdamPassey.Inventory {
 		public void Start() {
 			inventory = new GameObject[(int)inventorySize.x, (int)inventorySize.y];
 			parent = GameObjectFactory.NewGameObject(parentName, gameObject.transform);
-			inventoryGUI = InventoryGUI.CreateComponent(parent, this, itemOffset, tilesize, guiSize);
+			inventoryGUI = InventoryGUI.CreateComponent(parent, this, itemOffset, tilesize, guiSize, draggableArea);
 		}
 
 		/**
