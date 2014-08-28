@@ -5,8 +5,7 @@ using AdamPassey.Persistence;
 using AdamPassey.Persistence.Container;
 using AdamPassey.Persistence.Serializable;
 
-public class PersistenceUsage : MonoBehaviour
-{
+public class PersistenceUsage : MonoBehaviour {
 
 	public GameObject serializableCubePrefab;
 

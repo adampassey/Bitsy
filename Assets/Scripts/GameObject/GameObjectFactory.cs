@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.GameObjectHelper
-{
-	public class GameObjectFactory
-	{
+namespace AdamPassey.GameObjectHelper {
+
+	public class GameObjectFactory {
+
 		/**
 		 * 	Create a GameObject with name
 		 * 	@param name The name of the GameObject

@@ -3,18 +3,19 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 
-namespace AdamPassey.Equipment
-{
-	public class EquipmentItem : InventoryItem
-	{
+namespace AdamPassey.Equipment {
+
+	public class EquipmentItem : InventoryItem {
+
 		public EquipmentType equipmentType;
 		public bool defaultRenderingLayer = true;
 
 		private int renderingLayer;
 		private SpriteRenderer spriteRenderer;
 
-		public void Start() {
+		public override void Start() {
 			spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+			base.Start();
 		}
 
 		/**

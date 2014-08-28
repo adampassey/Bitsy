@@ -1,20 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.UserInterface
-{
-	public class DraggableItem : MonoBehaviour
-	{
+using AdamPassey.Audio;
+
+namespace AdamPassey.UserInterface {
+
+	public class DraggableItem : MonoBehaviour {
+
 		public Texture2D texture;
-		public string name;
+		public string itemName;
 		public string description;
+
+		private AudioSources audioSources;
+		
+		public virtual void Start() {
+			audioSources = GetComponent<AudioSources>();
+		}
+
+		/**
+		 * 	Called when the item is picked up
+		 * 
+		 **/
+		public virtual void Pickup() {
+			PlaySound(0);
+		}
+
+		/**
+		 * 	Called when the item is put down
+		 * 	(placed into an open slot)
+		 * 
+		 **/
+		public virtual void PutDown() {
+			PlaySound(1);
+		}
+
+		/**
+		 * 	Called when the item is dropped
+		 * 	TODO: not currently
+		 **/
+		public virtual void Drop() {
+			PlaySound(2);
+		}
 
 		/**
 		 * 	The GUI Content to display in UI
 		 **/
 		public virtual GUIContent GetGUIContent() {
 			GUIContent guiContent = new GUIContent();
-			guiContent.tooltip = name;
+			guiContent.tooltip = itemName;
 			guiContent.image = texture;
 			
 			return guiContent;
@@ -22,14 +55,24 @@ namespace AdamPassey.UserInterface
 
 		/**
 		 * 	Drop this item
+		 * 
 		 **/
-		public virtual void Drop() {
-			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			pos.z = 0;
+		public virtual bool Drop(Vector2 pos) {
 			gameObject.transform.position = pos;
 			gameObject.SetActive(true);
 			gameObject.transform.parent = null;
-			DraggedItem.GetInstance().item = null;
+			return true;
+		}
+
+		/**
+		 * 	Play a sound if an AudioSources component is
+		 * 	attached
+		 * 
+		 **/
+		private void PlaySound(int index) {
+			if (audioSources != null) {
+				AudioSource.PlayClipAtPoint(audioSources.audioClips[index], transform.position);
+			}
 		}
 	}
 }

@@ -4,33 +4,22 @@ using System.Collections;
 using AdamPassey.UserInterface;
 using AdamPassey.UserInterface.Handler;
 
-namespace AdamPassey.Equipment.Handler
-{
-	public class EquipmentDraggableHandler : DraggableHandler
-	{
-		private GameObject window;
+namespace AdamPassey.Equipment.Handler {
+
+	public class EquipmentDraggableHandler : DefaultDraggableHandler {
+
 		private EquipmentType equipmentType;
 		private Equipment equipment;
 
-		public EquipmentDraggableHandler(GameObject window, EquipmentType equipmentType, Equipment equipment)
-		{
-			this.window = window;
+		public EquipmentDraggableHandler(GameObject window, EquipmentType equipmentType, Equipment equipment) : base(window) {
 			this.equipmentType = equipmentType;
 			this.equipment = equipment;
-		}
-
-		public void Hover() {
-			
-		}
-
-		public void Hover(DraggableItem item) {
-			GUI.FocusWindow(window.GetInstanceID());
 		}
 
 		/**
 		 * 	If we're not currently dragging, start a drag
 		 **/
-		public DraggableItem Drag() {
+		public override DraggableItem Drag() {
 			return StartDrag();
 		}
 		
@@ -39,7 +28,7 @@ namespace AdamPassey.Equipment.Handler
 		 * 	start a drag
 		 * 
 		 **/
-		public DraggableItem Click() {
+		public override DraggableItem Click() {
 			return StartDrag();
 		}
 
@@ -51,14 +40,14 @@ namespace AdamPassey.Equipment.Handler
 		 *	Otherwise, return null
 		 *
 		 **/
-		public DraggableItem ItemDropped(DraggableItem item) {
+		public override DraggableItem ItemDropped(DraggableItem item) {
 			EquipmentItem equipmentItem = item.GetComponent<EquipmentItem>();
 			if (equipmentItem != null && equipmentItem.equipmentType == equipmentType) {
 				EquipmentItem tmpEquipmentItem = equipment.Unequip(equipmentType);
 				equipment.Equip(equipmentType, item.GetComponent<EquipmentItem>());
 				return tmpEquipmentItem;
 			}
-			return null;
+			return item;
 		}
 		
 		/**

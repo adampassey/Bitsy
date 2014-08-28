@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 using AdamPassey.GameObjectHelper;
 
-namespace AdamPassey.Inventory
-{
+namespace AdamPassey.Inventory {
+
 	[AddComponentMenu("Gameplay/Inventory")]
-	public class Inventory : MonoBehaviour
-	{
+	public class Inventory : MonoBehaviour {
+
 		public Rect guiSize = new Rect(50, 50, 220, 200);
 		public Vector2 inventorySize;
 		public Vector2 itemOffset;
@@ -28,16 +28,42 @@ namespace AdamPassey.Inventory
 		 * 	Add an object to the inventory
 		 * 	Will add the object to the first open 
 		 * 	location found.
+		 * 
+		 * 	If this is a stackable item it will attempt
+		 * 	to stack it in each slot that is a stackable item.
+		 * 	If there is a remainder of items, it will place them
+		 * 	at the first emtpy slot
+		 * 
 		 * 	@param obj The GameObject
 		 **/
 		public void AddObject(GameObject obj) {
+			StackableInventoryItem stackableItem = obj.GetComponent<StackableInventoryItem>();
+			InventoryPosition defaultPosition = null;
+
 			for (int x = 0; x < inventory.GetLength(0); x++) {
 				for (int y = 0; y < inventory.GetLength(1); y++) {
 					if (inventory[x, y] == null) {
-						AddObject(new InventoryPosition(x, y), obj);
-						return;
+						if (stackableItem == null) {
+							AddObject(new InventoryPosition(x, y), obj);
+							return;
+						} else if (defaultPosition == null) {
+							defaultPosition = new InventoryPosition(x, y);
+						}
+					} else {
+						if (stackableItem != null) {
+							StackableInventoryItem inventoryItem = inventory[x, y].GetComponent<StackableInventoryItem>();
+							if (inventoryItem != null) {
+								StackableInventoryItem remainder = inventoryItem.AddStackableInventoryItems(stackableItem);
+								if (remainder == null) {
+									return;
+								}
+							}
+						}
 					}
 				}
+			}
+			if (defaultPosition != null) {
+				AddObject(defaultPosition, obj);
 			}
 		}
 

@@ -3,8 +3,8 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 
-namespace AdamPassey.UserInterface
-{
+namespace AdamPassey.UserInterface {
+
 	/**
 	 * 	Singleton that contains the item that is
 	 * 	currently being dragged (set by InventoryGUI
@@ -12,8 +12,8 @@ namespace AdamPassey.UserInterface
 	 * 	added to the scene directly- instead use 
 	 * 	`GetInstance` to retrieve and interact with instance
 	 **/
-	public class DraggedItem : MonoBehaviour
-	{
+	public class DraggedItem : MonoBehaviour {
+
 		public int tilesize = 50;
 		public DraggableItem item;
 

@@ -3,12 +3,17 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 
-namespace AdamPassey.ActionBar
-{
-	public class ActionItem : InventoryItem
-	{
-		public virtual void Use() {
+namespace AdamPassey.ActionBar {
+
+	public class ActionItem : MonoBehaviour {
+
+		public bool destroyOnUse = false;
+
+		public virtual void Use(GameObject user) {
 			Debug.Log("Activating!");
+			if (destroyOnUse) {
+				Destroy(gameObject);
+			}
 		}
 	}
 }

@@ -3,8 +3,8 @@ using System.Collections;
 
 using AdamPassey.UserInterface;
 
-namespace AdamPassey.Inventory
-{
+namespace AdamPassey.Inventory {
+
 	/**
 	 * 	All items that can be added to the inventory
 	 * 	should have this component attached. This component
@@ -14,8 +14,8 @@ namespace AdamPassey.Inventory
 	 * 
 	 **/
 	[AddComponentMenu("Gameplay/Inventory Item")]
-	public class InventoryItem : DraggableItem
-	{
+	public class InventoryItem : DraggableItem {
+
 		/**
 		 * 	Currently using a propery in Actor to set the
 		 * 	collided inventory item. 

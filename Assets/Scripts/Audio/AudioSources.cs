@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 
 
-namespace AdamPassey.Audio
-{
+namespace AdamPassey.Audio {
 
 	/**
 	 * Attach multiple AudioClips to a single GameObject
 	 * and play them using their index.
 	 **/
 	[AddComponentMenu("Audio/Audio Sources")]
-	public class AudioSources : MonoBehaviour
-	{
+	public class AudioSources : MonoBehaviour {
 
 		public List<AudioClip> audioClips;
 		private AudioSource[] audioSources;

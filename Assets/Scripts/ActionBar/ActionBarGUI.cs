@@ -1,12 +1,15 @@
-﻿using UnityEngine;
+﻿#pragma warning disable 0414
+
+using UnityEngine;
 using System.Collections;
 
 using AdamPassey.UserInterface;
+using AdamPassey.ActionBar.Handler;
 
-namespace AdamPassey.ActionBar
-{
-	public class ActionBarGUI : MonoBehaviour
-	{
+namespace AdamPassey.ActionBar {
+
+	public class ActionBarGUI : MonoBehaviour {
+
 		private ActionItem[] items;
 		private ActionBar actionBar;
 		private Vector2 offset;
@@ -33,12 +36,13 @@ namespace AdamPassey.ActionBar
 		 **/
 		public void OnActionBarGUI(int windowId) {
 			for (int i = 0; i < items.Length; i++) {
+				Rect pos = new Rect((i * (float)tilesize) - tilesize, 0, tilesize, tilesize);
 				if (items[i] != null) {
-					ActionDraggableHandler handler = new ActionDraggableHandler(this.gameObject, items, i);
-					UI.Draggable(new Rect((i * (float)tilesize) - tilesize, 0, tilesize, tilesize), items[i].GetGUIContent(), new GUIStyle("button"), handler);
+					ActionDraggableHandler handler = new ActionDraggableHandler(this.gameObject, items, i, actionBar);
+					UI.Draggable(pos, items[i].GetComponent<DraggableItem>().GetGUIContent(), new GUIStyle("button"), handler);
 				} else {
 					ActionSlotHandler handler = new ActionSlotHandler(this.gameObject, items, i);
-					UI.Slot(new Rect((i * (float)tilesize) - tilesize, 0, tilesize, tilesize), new GUIStyle("button"), handler, new GUIContent(i.ToString()));
+					UI.Slot(pos, new GUIStyle("button"), handler, new GUIContent(i.ToString()));
 				}
 			}
 		}

@@ -4,27 +4,16 @@ using System.Collections;
 using AdamPassey.UserInterface;
 using AdamPassey.UserInterface.Handler;
 
-namespace AdamPassey.Equipment.Handler
-{
-	public class EquipmentSlotHandler : SlotHandler
-	{
-		private GameObject window;
+namespace AdamPassey.Equipment.Handler {
+
+	public class EquipmentSlotHandler : DefaultSlotHandler {
+
 		private EquipmentType equipmentType;
 		private Equipment equipment;
 
-		public EquipmentSlotHandler(GameObject window, EquipmentType equipmentType, Equipment equipment)
-		{
-			this.window = window;
+		public EquipmentSlotHandler(GameObject window, EquipmentType equipmentType, Equipment equipment) : base(window) {
 			this.equipmentType = equipmentType;
 			this.equipment = equipment;
-		}
-
-		/**
-		 * 	When hovered, focus this window
-		 * 
-		 **/
-		public void Hover() {
-			GUI.FocusWindow(window.GetInstanceID());
 		}
 
 		/**
@@ -35,7 +24,7 @@ namespace AdamPassey.Equipment.Handler
 		 * 	Currently does not swap out equipment of different types.
 		 * 
 		 **/
-		public bool ItemDropped(DraggableItem item) {
+		public override bool ItemDropped(DraggableItem item) {
 			EquipmentItem equipmentItem = item.GetComponent<EquipmentItem>();
 			if (equipmentItem != null && equipmentItem.equipmentType == equipmentType) {
 				if (equipment.IsSlotFree(equipmentType)) {

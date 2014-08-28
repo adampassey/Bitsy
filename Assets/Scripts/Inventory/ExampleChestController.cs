@@ -3,8 +3,7 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 
-public class ExampleChestController : MonoBehaviour
-{
+public class ExampleChestController : MonoBehaviour {
 
 	private Inventory inventory;
 

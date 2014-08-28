@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.UserInterface.Handler
-{
+namespace AdamPassey.UserInterface.Handler {
+
 	/**
 	 * 	A SlotHandler will receive events from UI.Slot elements
 	 * 
 	 **/
-	public interface SlotHandler
-	{
+	public interface SlotHandler {
+
 		void Hover();
 
 		//	return a DraggableItem to consume the draggable item

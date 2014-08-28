@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Timer
-{
-	public class Timer
-	{
+namespace AdamPassey.Timer {
+
+	public class Timer {
+
 		private float time;
 
-		public Timer()
-		{
+		public Timer() {
 			time = Time.timeSinceLevelLoad;
 		}
 

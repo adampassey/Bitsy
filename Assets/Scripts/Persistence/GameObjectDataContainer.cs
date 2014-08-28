@@ -3,21 +3,20 @@ using System.Collections.Generic;
 
 using AdamPassey.Persistence.Serializable;
 
-namespace AdamPassey.Persistence.Container
-{
+namespace AdamPassey.Persistence.Container {
+
 	/**
 	 * 	A Data Container for Serializable Game Objects
 	 **/
 	[System.Serializable]
-	public class GameObjectDataContainer : DataContainer
-	{
+	public class GameObjectDataContainer : DataContainer {
+
 		private List<SerializableGameObject> data;
 
 		/**
 		 *	Construct this Data Container
 		 **/
-		public GameObjectDataContainer()
-		{
+		public GameObjectDataContainer() {
 			data = new List<SerializableGameObject>();
 		}
 
@@ -26,8 +25,7 @@ namespace AdamPassey.Persistence.Container
 		 * 
 		 * 	@parm list The list of SerializableGameObject's
 		 **/
-		public GameObjectDataContainer(List<SerializableGameObject> list)
-		{
+		public GameObjectDataContainer(List<SerializableGameObject> list) {
 			data = list;
 		}
 

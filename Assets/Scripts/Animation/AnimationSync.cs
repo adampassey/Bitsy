@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Animation
-{
-	public class AnimationSync : MonoBehaviour
-	{
+namespace AdamPassey.Animation {
+
+	public class AnimationSync : MonoBehaviour {
 
 		private string currentClipName;
 		private Animator animator;

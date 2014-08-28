@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.UserInterface
-{
+namespace AdamPassey.UserInterface {
+
 	/**
 	 * 	Creates a button that overlays the screen-
 	 * 	when clicked it will "drop" the item being
 	 * 	dragged at the clicked position
 	 **/
-	public class DroppableScreenOverlay : MonoBehaviour
-	{
+	public class DroppableScreenOverlay : MonoBehaviour {
+
 		private DraggedItem draggedItem;
 
 		/**
@@ -35,7 +35,10 @@ namespace AdamPassey.UserInterface
 			if (renderingRect.Contains(UnityEngine.Event.current.mousePosition)) {
 				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
 
-					draggedItem.item.Drop();
+					//	will only drop the item if Drop() returns true
+					if (draggedItem.item.Drop(Camera.main.ScreenToWorldPoint(Input.mousePosition))) {
+						draggedItem.item = null;
+					}
 
 					UnityEngine.Event.current.Use();
 				}

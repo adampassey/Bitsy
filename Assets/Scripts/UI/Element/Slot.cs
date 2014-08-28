@@ -3,15 +3,15 @@ using System.Collections;
 
 using AdamPassey.Inventory;
 using AdamPassey.UserInterface.Handler;
+using AdamPassey.Audio;
 
-namespace AdamPassey.UserInterface.Element
-{
-	public static class Slot
-	{
+namespace AdamPassey.UserInterface.Element {
+
+	public static class Slot {
+
 		private static DraggedItem draggedItem;
 
-		static Slot()
-		{
+		static Slot() {
 			draggedItem = DraggedItem.GetInstance();
 		}
 		/**
@@ -33,6 +33,7 @@ namespace AdamPassey.UserInterface.Element
 				//	fire the mouse-up event on the handler
 				if (UnityEngine.Event.current.type == EventType.MouseUp && draggedItem.item != null) {
 					if (handler.ItemDropped(draggedItem.item)) {
+						draggedItem.item.PutDown();
 						draggedItem.item = null;
 					}
 					UnityEngine.Event.current.Use();

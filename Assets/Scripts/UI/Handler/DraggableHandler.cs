@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.UserInterface.Handler
-{
+namespace AdamPassey.UserInterface.Handler {
+
 	/**
 	 * 	A DraggableHandler will receive events from UI.Draggable elements
 	 **/
-	public interface DraggableHandler
-	{
+	public interface DraggableHandler {
+
 		void Hover();
 
 		void Hover(DraggableItem item);

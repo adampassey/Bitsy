@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.GameState
-{
-	public class GameState
-	{
-		public enum States
-		{
+namespace AdamPassey.GameState {
+
+	public class GameState {
+
+		public enum States {
 			Paused,
 			Running
 		}

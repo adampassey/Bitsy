@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.ActionBar
-{
-	public class ActionBarController : MonoBehaviour
-	{
+namespace AdamPassey.ActionBar {
+
+	public class ActionBarController : MonoBehaviour {
+
 		private ActionBar actionBar;
 
 		public static ActionBarController CreateComponent(GameObject parent, ActionBar actionBar) {

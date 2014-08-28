@@ -4,14 +4,13 @@ using System.Collections;
 using AdamPassey.Inventory;
 using AdamPassey.UserInterface.Handler;
 
-namespace AdamPassey.UserInterface.Element
-{
-	public static class Draggable
-	{
+namespace AdamPassey.UserInterface.Element {
+
+	public static class Draggable {
+
 		private static DraggedItem draggedItem;
 
-		static Draggable()
-		{
+		static Draggable() {
 			draggedItem = DraggedItem.GetInstance();
 		}
 		/**
@@ -35,7 +34,7 @@ namespace AdamPassey.UserInterface.Element
 				DraggableItem item = null;
 
 				//	if a drag is initiated, notify the handler
-				if (UnityEngine.Event.current.type == EventType.MouseDrag && draggedItem.item == null) {
+				if (UnityEngine.Event.current.type == EventType.MouseDown && draggedItem.item == null) {
 					item = handler.Drag();
 					UnityEngine.Event.current.Use();
 				}
@@ -49,12 +48,16 @@ namespace AdamPassey.UserInterface.Element
 						//	remove the dragged item if the handler returns true
 						item = handler.ItemDropped(draggedItem.item);
 						if (item != null) {
+							item.Pickup();
 							draggedItem.item = item;
+						} else {
+							draggedItem.item = null;
 						}
 					}
 					UnityEngine.Event.current.Use();
 				}
 				if (item != null) {
+					item.Pickup();
 					draggedItem.item = item;
 				}
 			}

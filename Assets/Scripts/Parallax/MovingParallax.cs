@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Parallax
-{
+namespace AdamPassey.Parallax {
+
 	[AddComponentMenu("Environment/Moving Parallax")]
-	public class MovingParallax : Parallax
-	{
+	public class MovingParallax : Parallax {
+
 		// Use this for initialization
 		public override void Start() {
 			base.Start();

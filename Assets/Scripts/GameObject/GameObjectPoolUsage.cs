@@ -2,9 +2,7 @@
 using System.Collections;
 using AdamPassey.GameObjectPool;
 
-
-public class GameObjectPoolUsage : MonoBehaviour
-{
+public class GameObjectPoolUsage : MonoBehaviour {
 
 	public GameObject poolPrefab;
 	public int poolCount = 10;

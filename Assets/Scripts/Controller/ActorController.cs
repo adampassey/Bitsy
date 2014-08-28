@@ -8,27 +8,24 @@ using AdamPassey.GameState;
 using AdamPassey.UserInterface;
 using AdamPassey.Animation;
 
-public class ActorController : MonoBehaviour
-{
+public class ActorController : MonoBehaviour {
 
 	public float speed = 5f;
 	public GameObject collidedInventoryItem;
 
 	private Animator animator;
-	private Rigidbody2D rigidbody;
+	private Rigidbody2D _rigidbody2D;
 	private Inventory inventory;
 	private Equipment equipment;
 	private Popup popup;
 	private AnimationSync animationSync;
-	private ActionBar actionBar;
 
 	// Use this for initialization
 	void Start() {
 		animator = gameObject.GetComponent<Animator>();
-		rigidbody = gameObject.GetComponent<Rigidbody2D>();
+		_rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
 		inventory = gameObject.GetComponent<Inventory>();
 		equipment = gameObject.GetComponent<Equipment>();
-		actionBar = gameObject.GetComponent<ActionBar>();
 		animationSync = gameObject.GetComponent<AnimationSync>();
 
 		//	equipment requires an animation sync
@@ -58,7 +55,7 @@ public class ActorController : MonoBehaviour
 		}
 		
 		if (Input.GetKey(KeyCode.UpArrow)) {
-			rigidbody.AddForce(new Vector2(0f, 50f));
+			_rigidbody2D.AddForce(new Vector2(0f, 50f));
 		}
 		
 		if (Input.GetKeyDown(KeyCode.DownArrow)) {

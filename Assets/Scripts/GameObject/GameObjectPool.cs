@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.GameObjectPool
-{
-	public class GameObjectPool<T> where T : MonoBehaviour
-	{
+namespace AdamPassey.GameObjectPool {
+
+	public class GameObjectPool<T> where T : MonoBehaviour {
+
 		private T[] gameObjects;
 		private GameObject prefab;
 		private int count;
@@ -18,8 +18,7 @@ namespace AdamPassey.GameObjectPool
 		 *	@param prefab The prefab to spawn
 		 *	@param count The total number of spawned prefabs
 		 **/
-		public GameObjectPool(GameObject prefab, int count)
-		{
+		public GameObjectPool(GameObject prefab, int count) {
 			gameObjects = new T[count];
 			this.prefab = prefab;
 			this.count = count;

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.WorldMap
-{
-	public class Controller : MonoBehaviour
-	{
+namespace AdamPassey.WorldMap {
+
+	public class Controller : MonoBehaviour {
 
 		public WorldMap worldmap;
 	
