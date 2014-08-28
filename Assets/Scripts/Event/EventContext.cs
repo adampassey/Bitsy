@@ -1,6 +1,6 @@
 using System;
 
-namespace AdamPassey.Event {
+namespace Bitsy.Event {
 
 	/**
 	 * Interface for object that will be sent to 

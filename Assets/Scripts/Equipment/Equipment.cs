@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-using AdamPassey.GameObjectHelper;
-using AdamPassey.Animation;
+using Bitsy.GameObjectHelper;
+using Bitsy.Animation;
 
-namespace AdamPassey.Equipment {
+namespace Bitsy.Equipment {
 
 	[AddComponentMenu("Gameplay/Equipment")]
 	public class Equipment : MonoBehaviour {

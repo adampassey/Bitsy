@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-using AdamPassey.Persistence.Serializable;
+using Bitsy.Persistence.Serializable;
 
-namespace AdamPassey.Persistence.Container {
+namespace Bitsy.Persistence.Container {
 
 	/**
 	 * 	A Data Container for Serializable Game Objects

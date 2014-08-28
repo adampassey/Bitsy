@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.Inventory;
+using Bitsy.Inventory;
 
-namespace AdamPassey.Equipment {
+namespace Bitsy.Equipment {
 
 	public class EquipmentItem : InventoryItem {
 

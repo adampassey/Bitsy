@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.WorldMap {
+namespace Bitsy.WorldMap {
 
 	public class Controller : MonoBehaviour {
 

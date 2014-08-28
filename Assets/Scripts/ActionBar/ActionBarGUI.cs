@@ -3,10 +3,10 @@
 using UnityEngine;
 using System.Collections;
 
-using AdamPassey.UserInterface;
-using AdamPassey.ActionBar.Handler;
+using Bitsy.UserInterface;
+using Bitsy.ActionBar.Handler;
 
-namespace AdamPassey.ActionBar {
+namespace Bitsy.ActionBar {
 
 	public class ActionBarGUI : MonoBehaviour {
 

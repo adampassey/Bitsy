@@ -20,7 +20,7 @@ size of each tile).
 Once the inventory is attached, it can be opened and closed easily:
 
 ```C#
-using AdamPassey.Inventory;
+using Bitsy.Inventory;
 
 public class SomeGameObject {
 	
@@ -143,13 +143,13 @@ Persister.Save<NameDataContainer>("name", dataContainer);
 The Events system provides a way to fire and receive events between game objects without
 requiring references between each other.
 
-*Usage:* Import `AdamPassey.Event` and use the static `Events` class to send and receive events. Examples of two 
+*Usage:* Import `Bitsy.Event` and use the static `Events` class to send and receive events. Examples of two 
 different game objects, listening to, and firing events:
 
 Actor.cs
 ```C#
 //  make sure you're using this package
-using AdamPassey.Event;
+using Bitsy.Event;
 
 public class Actor : MonoBehavior {
 
@@ -171,7 +171,7 @@ public class Actor : MonoBehavior {
 
 GameOverScreen.cs
 ```C#
-using AdamPassey.Event;
+using Bitsy.Event;
 
 public class GameOverScreen : MonoBehavior {
   
@@ -233,7 +233,7 @@ The Game Object Pool instantiates game objects and makes it easy to retrieve the
 
 Gun.cs
 ```C#
-using AdamPassey.Pool;
+using Bitsy.Pool;
 
 public class Gun : MonoBehavior {
   
@@ -279,7 +279,7 @@ public class Bullet : MonoBehavior {
 Using the timer allows you to determine if a specific amount of time has passed. Usage:
 
 ```C#
-using AdamPassey.Timer;
+using Bitsy.Timer;
 
 private Timer timer;
 
@@ -368,7 +368,7 @@ multiple `AudioSource` components.
 the 'Audio Clips' array in the inspector. Reference these clips in your code with:
 
 ```C#
-using AdamPassey.Audio;
+using Bitsy.Audio;
 
 private AudioSources audioSources;
 

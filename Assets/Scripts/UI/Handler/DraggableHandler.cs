@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.UserInterface.Handler {
+namespace Bitsy.UserInterface.Handler {
 
 	/**
 	 * 	A DraggableHandler will receive events from UI.Draggable elements

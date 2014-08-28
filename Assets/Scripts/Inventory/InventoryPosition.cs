@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Inventory {
+namespace Bitsy.Inventory {
 
 	public class InventoryPosition {
 

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-using AdamPassey.GameObjectHelper;
+using Bitsy.GameObjectHelper;
 
-namespace AdamPassey.Inventory {
+namespace Bitsy.Inventory {
 
 	[AddComponentMenu("Gameplay/Inventory")]
 	public class Inventory : MonoBehaviour {

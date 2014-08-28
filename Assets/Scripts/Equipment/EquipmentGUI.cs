@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.UserInterface;
-using AdamPassey.Equipment.Handler;
+using Bitsy.UserInterface;
+using Bitsy.Equipment.Handler;
 
-namespace AdamPassey.Equipment {
+namespace Bitsy.Equipment {
 
 	public class EquipmentGUI : MonoBehaviour {
 

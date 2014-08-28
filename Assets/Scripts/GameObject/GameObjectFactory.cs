@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.GameObjectHelper {
+namespace Bitsy.GameObjectHelper {
 
 	public class GameObjectFactory {
 

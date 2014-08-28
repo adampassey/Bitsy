@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace AdamPassey.WorldMap {
+namespace Bitsy.WorldMap {
 
 	public class WorldMap : MonoBehaviour {
 

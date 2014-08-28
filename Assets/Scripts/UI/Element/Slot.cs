@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.Inventory;
-using AdamPassey.UserInterface.Handler;
-using AdamPassey.Audio;
+using Bitsy.Inventory;
+using Bitsy.UserInterface.Handler;
 
-namespace AdamPassey.UserInterface.Element {
+namespace Bitsy.UserInterface.Element {
 
 	public static class Slot {
 

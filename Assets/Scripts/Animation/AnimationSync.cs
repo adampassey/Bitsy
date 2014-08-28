@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Animation {
+namespace Bitsy.Animation {
 
 	public class AnimationSync : MonoBehaviour {
 

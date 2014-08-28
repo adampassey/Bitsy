@@ -2,9 +2,9 @@
 using UnityEditor;
 using System.Collections;
 
-using AdamPassey.Inventory;
+using Bitsy.Inventory;
 
-namespace AdamPassey.Editor.MenuItems {
+namespace Bitsy.Editor.MenuItems {
 	
 	public class StackableInventoryItemMenu : MonoBehaviour {
 		

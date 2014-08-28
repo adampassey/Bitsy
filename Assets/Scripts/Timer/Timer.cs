@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Timer {
+namespace Bitsy.Timer {
 
 	public class Timer {
 

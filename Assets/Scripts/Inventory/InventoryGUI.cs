@@ -3,10 +3,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-using AdamPassey.UserInterface;
-using AdamPassey.Inventory.Handler;
+using Bitsy.UserInterface;
+using Bitsy.Inventory.Handler;
 
-namespace AdamPassey.Inventory {
+namespace Bitsy.Inventory {
 
 	[AddComponentMenu("Gameplay/Inventory GUI")]
 	public class InventoryGUI : MonoBehaviour {

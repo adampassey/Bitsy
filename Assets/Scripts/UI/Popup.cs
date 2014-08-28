@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.UserInterface {
+namespace Bitsy.UserInterface {
 
 	public class Popup : MonoBehaviour {
 

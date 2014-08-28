@@ -2,9 +2,9 @@
 using UnityEditor;
 using System.Collections;
 
-using AdamPassey.Equipment;
+using Bitsy.Equipment;
 
-namespace AdamPassey.Editor.MenuItems {
+namespace Bitsy.Editor.MenuItems {
 	
 	public class EquipmentItemMenu : MonoBehaviour {
 		

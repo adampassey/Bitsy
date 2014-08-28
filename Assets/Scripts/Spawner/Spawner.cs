@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Spawner {
+namespace Bitsy.Spawner {
 
 	public class Spawner : MonoBehaviour {
 

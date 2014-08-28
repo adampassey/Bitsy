@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.GameObjectPool {
+namespace Bitsy.GameObjectPool {
 
 	public class GameObjectPool<T> where T : MonoBehaviour {
 

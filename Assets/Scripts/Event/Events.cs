@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AdamPassey.Event {
+namespace Bitsy.Event {
 
 	public static class Events {
 

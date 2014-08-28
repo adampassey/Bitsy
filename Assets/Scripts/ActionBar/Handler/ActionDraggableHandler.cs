@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.UserInterface;
-using AdamPassey.UserInterface.Handler;
-using AdamPassey.Inventory;
+using Bitsy.UserInterface;
+using Bitsy.UserInterface.Handler;
+using Bitsy.Inventory;
 
-namespace AdamPassey.ActionBar.Handler {
+namespace Bitsy.ActionBar.Handler {
 
 	public class ActionDraggableHandler : DefaultDraggableHandler {
 		

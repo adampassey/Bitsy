@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Equipment {
+namespace Bitsy.Equipment {
 
 	/**
 	 * 	The different types of equipment.

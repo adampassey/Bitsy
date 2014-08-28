@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.Inventory;
-using AdamPassey.Equipment;
-using AdamPassey.ActionBar;
-using AdamPassey.GameState;
-using AdamPassey.UserInterface;
-using AdamPassey.Animation;
+using Bitsy.Inventory;
+using Bitsy.Equipment;
+using Bitsy.ActionBar;
+using Bitsy.GameState;
+using Bitsy.UserInterface;
+using Bitsy.Animation;
 
 public class ActorController : MonoBehaviour {
 

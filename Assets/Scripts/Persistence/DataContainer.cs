@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace AdamPassey.Persistence.Container {
+namespace Bitsy.Persistence.Container {
 
 	/**
 	 * 	A Generic DataContainer interface

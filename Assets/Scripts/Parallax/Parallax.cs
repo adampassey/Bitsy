@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Parallax {
+namespace Bitsy.Parallax {
 
 	[AddComponentMenu("Environment/Parallax")]
 	public class Parallax : MonoBehaviour {

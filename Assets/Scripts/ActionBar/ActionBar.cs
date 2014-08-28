@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.GameObjectHelper;
+using Bitsy.GameObjectHelper;
 
-namespace AdamPassey.ActionBar {
+namespace Bitsy.ActionBar {
 
 	public class ActionBar : MonoBehaviour {
 

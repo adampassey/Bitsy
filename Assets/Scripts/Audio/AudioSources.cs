@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace AdamPassey.Audio {
+namespace Bitsy.Audio {
 
 	/**
 	 * Attach multiple AudioClips to a single GameObject

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-using AdamPassey.Persistence;
-using AdamPassey.Persistence.Container;
-using AdamPassey.Persistence.Serializable;
+using Bitsy.Persistence;
+using Bitsy.Persistence.Container;
+using Bitsy.Persistence.Serializable;
 
 public class PersistenceUsage : MonoBehaviour {
 

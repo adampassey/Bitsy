@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Audio {
+namespace Bitsy.Audio {
 
 	public class AudioSourcesUsage : MonoBehaviour {
 

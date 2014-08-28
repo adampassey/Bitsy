@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.Timer;
+using Bitsy.Timer;
 
 public class TimerUsage : MonoBehaviour {
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.Event;
+using Bitsy.Event;
 
 public class EventUsage : MonoBehaviour {
 

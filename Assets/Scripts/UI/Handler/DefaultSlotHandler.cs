@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.UserInterface.Handler {
+namespace Bitsy.UserInterface.Handler {
 
 	/**
 	 * 	When the mouse hovers over a UI.Slot, this

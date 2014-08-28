@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AdamPassey.Event {
+namespace Bitsy.Event {
 	/**
 	 * Implementation of EventContext that will be sent
 	 * to event listeners.

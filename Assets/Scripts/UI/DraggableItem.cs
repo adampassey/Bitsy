@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.Audio;
+using Bitsy.Audio;
 
-namespace AdamPassey.UserInterface {
+namespace Bitsy.UserInterface {
 
 	public class DraggableItem : MonoBehaviour {
 

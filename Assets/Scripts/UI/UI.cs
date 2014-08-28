@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.Inventory;
-using AdamPassey.UserInterface.Element;
-using AdamPassey.UserInterface.Handler;
+using Bitsy.Inventory;
+using Bitsy.UserInterface.Element;
+using Bitsy.UserInterface.Handler;
 
-namespace AdamPassey.UserInterface {
+namespace Bitsy.UserInterface {
 
 	public static class UI {
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace AdamPassey.Persistence.Serializable {
+namespace Bitsy.Persistence.Serializable {
 
 	/**
 	 * 	Serializable Game Object. Currently only contains

@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using AdamPassey.Persistence.Container;
 
-namespace  AdamPassey.Persistence {
+using Bitsy.Persistence.Container;
+
+namespace Bitsy.Persistence {
 
 	public class Persister {
 

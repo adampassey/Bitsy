@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using AdamPassey.GameObjectPool;
+
+using Bitsy.GameObjectPool;
 
 public class GameObjectPoolUsage : MonoBehaviour {
 

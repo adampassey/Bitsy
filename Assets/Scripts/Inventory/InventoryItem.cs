@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.UserInterface;
+using Bitsy.UserInterface;
 
-namespace AdamPassey.Inventory {
+namespace Bitsy.Inventory {
 
 	/**
 	 * 	All items that can be added to the inventory

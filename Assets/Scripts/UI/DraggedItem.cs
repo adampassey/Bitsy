@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.Inventory;
+using Bitsy.Inventory;
 
-namespace AdamPassey.UserInterface {
+namespace Bitsy.UserInterface {
 
 	/**
 	 * 	Singleton that contains the item that is

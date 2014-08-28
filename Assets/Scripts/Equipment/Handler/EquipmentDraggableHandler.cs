@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using AdamPassey.UserInterface;
-using AdamPassey.UserInterface.Handler;
+using Bitsy.UserInterface;
+using Bitsy.UserInterface.Handler;
 
-namespace AdamPassey.Equipment.Handler {
+namespace Bitsy.Equipment.Handler {
 
 	public class EquipmentDraggableHandler : DefaultDraggableHandler {
 
