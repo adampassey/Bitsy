@@ -1,11 +1,16 @@
+using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+
+using Bitsy.Util;
 
 namespace Bitsy.Event {
 
 	public static class Events {
 
-		public static Dictionary<string, Action<EventContext>> listeners;
+		private static Dictionary<string, Action<EventContext>> listeners;
+		private static CoroutineDispatcher coroutineDispatcher = CoroutineDispatcher.GetInstance();
 
 		/**
 		 * Static constructor
@@ -31,7 +36,7 @@ namespace Bitsy.Event {
 		 * @param string eventName The name of the event to fire.
 		 **/
 		public static void Fire(string eventName) {
-			Fire(eventName, null);
+			coroutineDispatcher.DispatchCoroutine(FireCoroutine(eventName, null));
 		}
 
 		/**
@@ -41,16 +46,28 @@ namespace Bitsy.Event {
 		 * @param object sender The object to pass to the listener.
 		 * 
 		 **/
-		public static void Fire(string eventName, Object sender) {
+		public static void Fire(string eventName, UnityEngine.Object sender) {
+			coroutineDispatcher.DispatchCoroutine(FireCoroutine(eventName, sender));
+		}
+
+		/**
+		 * Fires off the event as a Coroutine.
+		 * 
+		 * @param string eventName The name of the event to fire.
+		 * @param object sender The object to pass to the listener.
+		 **/
+		private static IEnumerator FireCoroutine(string eventName, UnityEngine.Object sender) {
 			foreach (KeyValuePair<string, Action<EventContext>> entry in listeners) {
 				if (entry.Key == eventName) {
-
+					
 					EventContext e = new EventContextImpl();
 					e.eventName = eventName;	
 					e.sender = sender;
 					
 					entry.Value(e);
 				}
+
+				yield return null;
 			}
 		}
 	}
