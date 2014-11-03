@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Bitsy.Util;
+
 namespace Bitsy.GameObjectPool {
 
 	public class GameObjectPool<T> where T : MonoBehaviour {
@@ -9,6 +11,7 @@ namespace Bitsy.GameObjectPool {
 		private GameObject prefab;
 		private int count;
 		private GameObject parent;
+		private CoroutineDispatcher coroutineDispatcher = CoroutineDispatcher.GetInstance();
 
 		private static string parentName = "Game Object Pool: ";
 
@@ -25,6 +28,8 @@ namespace Bitsy.GameObjectPool {
 
 			parent = new GameObject();
 			parent.name = parentName + prefab.name;
+
+			coroutineDispatcher.DispatchCoroutine(CreatePool());
 		}
 
 		/**
