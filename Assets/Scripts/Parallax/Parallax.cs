@@ -29,9 +29,9 @@ namespace Bitsy.Parallax {
 			Vector3 currentPosition = mainCamera.transform.position;
 
 			//	create the texture offset based on desired speed
-			Vector2 textureOffset = materialObject.renderer.material.mainTextureOffset;
+			Vector2 textureOffset = materialObject.GetComponent<Renderer>().material.mainTextureOffset;
 			textureOffset.x += (currentPosition.x - previousPosition.x) * speed;
-			materialObject.renderer.material.mainTextureOffset = textureOffset;
+			materialObject.GetComponent<Renderer>().material.mainTextureOffset = textureOffset;
 
 			//	set the y position based on speed
 			Vector3 newPosition = currentPosition;

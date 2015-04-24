@@ -100,7 +100,7 @@ namespace Bitsy.UserInterface.Inventory.Equipment {
 			item.gameObject.transform.parent = equipmentContainer.transform;
 			item.transform.localPosition = Vector3.zero;
 			item.GetComponent<BoxCollider2D>().enabled = false;
-			item.rigidbody2D.isKinematic = true;
+			item.GetComponent<Rigidbody2D>().isKinematic = true;
 		}
 
 		/**
@@ -115,7 +115,7 @@ namespace Bitsy.UserInterface.Inventory.Equipment {
 			item.transform.parent = null;
 			item.gameObject.SetActive(false);
 			item.GetComponent<BoxCollider2D>().enabled = true;
-			item.rigidbody2D.isKinematic = false;
+			item.GetComponent<Rigidbody2D>().isKinematic = false;
 		}
 
 		//	TODO: these are the same methods from

@@ -26,7 +26,7 @@ namespace Bitsy.Animation {
 		 * 
 		 **/
 		public void Update() {
-			AnimationInfo[] animationInfo = animator.GetCurrentAnimationClipState(0);
+			AnimatorClipInfo[] animationInfo = animator.GetCurrentAnimatorClipInfo(0);
 			string clipName = string.Empty;
 
 			if (animationInfo.Length > 0) {

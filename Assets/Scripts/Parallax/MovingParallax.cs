@@ -15,9 +15,9 @@ namespace Bitsy.Parallax {
 		public override void Update() {
 			Vector3 currentPosition = mainCamera.transform.position;
 
-			Vector2 textureOffset = materialObject.renderer.material.mainTextureOffset;
+			Vector2 textureOffset = materialObject.GetComponent<Renderer>().material.mainTextureOffset;
 			textureOffset.x += speed * Time.deltaTime;
-			materialObject.renderer.material.mainTextureOffset = textureOffset;
+			materialObject.GetComponent<Renderer>().material.mainTextureOffset = textureOffset;
 
 			Vector3 newPosition = currentPosition;
 			newPosition.y -= previousPosition.y * speed;
